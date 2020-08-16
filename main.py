@@ -24,12 +24,22 @@ class Vec2:
     y: int
 
 disc = Vec2(395, 500)
-disc_velocity = Vec2(0, -100)
+disc_velocity = Vec2(0, 0)
+mouse_down = False
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             quit()
+
+    if(pygame.mouse.get_pressed()[0] and mouse_down == False):
+        mouse_down = True
+        pygame.mouse.get_rel()
+    elif(not pygame.mouse.get_pressed()[0] and mouse_down == True):
+        mouse_down = False
+        mouse_movement = pygame.mouse.get_rel()
+        disc_velocity.x = mouse_movement[0]
+        disc_velocity.y = mouse_movement[1]
 
     if (math.sqrt(pow(disc.x - 400, 2) + pow(disc.y - 130, 2)) > 10):
         disc.x = frame_period * disc_velocity.x + disc.x
