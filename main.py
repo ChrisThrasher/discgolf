@@ -1,5 +1,6 @@
 #!/usr/local/bin/python3
 
+import math
 import pygame
 
 pygame.init()
@@ -30,8 +31,9 @@ while True:
         if event.type == pygame.QUIT:
             quit()
 
-    disc.x = frame_period * disc_velocity.x + disc.x
-    disc.y = frame_period * disc_velocity.y + disc.y
+    if (math.sqrt(pow(disc.x - 400, 2) + pow(disc.y - 130, 2)) > 10):
+        disc.x = frame_period * disc_velocity.x + disc.x
+        disc.y = frame_period * disc_velocity.y + disc.y
 
     screen.fill(COLOR_ROUGH)
 
