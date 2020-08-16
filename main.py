@@ -13,6 +13,7 @@ COLOR_TEE = (155, 155, 155)
 COLOR_HOLE = (82, 82, 82)
 COLOR_DISC = (176, 23, 12)
 COLOR_ARROW = (227, 220, 32)
+COLOR_OBSTACLE = (189, 47, 47)
 
 screen_width = 800
 screen_height = 600
@@ -20,6 +21,17 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 frame_rate = 60;
 frame_period = 1.0 / frame_rate;
+
+class obstacle:
+    def __init__(self,xo,yo,width,height):
+        self.x = xo
+        self.y = yo
+        self.width = width
+        self.height = height
+    x: int
+    y: int
+    width: int
+    height: int
 
 class Vec2:
     def __init__(self, x_init, y_init):
@@ -33,6 +45,8 @@ disc_velocity = Vec2(0, 0)
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
+
+treeLine = obstacle(400,300,100,5)
 
 while running:
     for event in pygame.event.get():
@@ -66,6 +80,12 @@ while running:
     if (disc.x < 0 or disc.x > screen_width or disc.y < 0 or disc.y > screen_height):
         print("Exited the play area.")
         running = False
+        
+    # Obstacle Check
+    if (disc.x >= treeLine.x - treeLine.width/2 and disc.x <= treeLine.x + treeLine.width/2 and 
+    disc.y >= treeLine.y - treeLine.height/2 and disc.y <= treeLine.y + treeLine.height/2):
+           disc_velocity.x = 0
+           disc_velocity.y = 0
 
     screen.fill(COLOR_ROUGH)
 
@@ -73,6 +93,7 @@ while running:
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
     pygame.draw.ellipse(screen, COLOR_HOLE, [390, 120, 20, 20])
     pygame.draw.ellipse(screen, COLOR_DISC, [disc.x, disc.y, 10, 10])
+    pygame.draw.rect(screen, COLOR_OBSTACLE, [treeLine.x - treeLine.width/2, treeLine.y, treeLine.width, treeLine.height])
     if(mouse_down):
         pygame.draw.line(screen, COLOR_ARROW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
