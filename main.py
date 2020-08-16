@@ -13,7 +13,9 @@ COLOR_HOLE = (82, 82, 82)
 COLOR_DISC = (176, 23, 12)
 COLOR_ARROW = (227, 220, 32)
 
-screen = pygame.display.set_mode((800,600))
+screen_width = 800
+screen_height = 600
+screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 frame_rate = 60;
 frame_period = 1.0 / frame_rate;
@@ -51,6 +53,11 @@ while running:
         disc.x = frame_period * disc_velocity.x + disc.x
         disc.y = frame_period * disc_velocity.y + disc.y
     else:
+        print("Completed the hole in", stroke_count, "strokes.")
+        running = False
+
+    if (disc.x < 0 or disc.x > screen_width or disc.y < 0 or disc.y > screen_height):
+        print("Exited the play area.")
         running = False
 
     screen.fill(COLOR_ROUGH)
@@ -65,5 +72,4 @@ while running:
     pygame.display.update()
     clock.tick(frame_rate)
 
-print("Completed the hole in", stroke_count, "strokes.")
 pygame.quit()
