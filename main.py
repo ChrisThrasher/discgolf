@@ -10,7 +10,7 @@ COLOR_FAIRWAY = (16, 163, 48)
 COLOR_TEE = (155, 155, 155)
 COLOR_HOLE = (82, 82, 82)
 COLOR_DISC = (176, 23, 12)
-COLOR_ARROW = (232, 78, 35)
+COLOR_ARROW = (227, 220, 32)
 
 screen = pygame.display.set_mode((800,600))
 clock = pygame.time.Clock()
