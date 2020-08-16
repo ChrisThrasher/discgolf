@@ -50,7 +50,7 @@ while running:
         disc_velocity.y = mouse_movement[1]
         stroke_count = stroke_count + 1
 
-    if (math.sqrt(pow(disc.x - 400, 2) + pow(disc.y - 130, 2)) > 10):
+    if (math.sqrt(pow(disc.x - 390, 2) + pow(disc.y - 120, 2)) > 10):
         wind_resistance = 0.0002
         disc_velocity.x = disc_velocity.x - np.sign(disc_velocity.x) * wind_resistance * pow(disc_velocity.x, 2)
         disc_velocity.y = disc_velocity.y - np.sign(disc_velocity.y) * wind_resistance * pow(disc_velocity.y, 2)
