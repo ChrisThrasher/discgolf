@@ -10,6 +10,7 @@ COLOR_FAIRWAY = (16, 163, 48)
 COLOR_TEE = (155, 155, 155)
 COLOR_HOLE = (82, 82, 82)
 COLOR_DISC = (176, 23, 12)
+COLOR_ARROW = (232, 78, 35)
 
 screen = pygame.display.set_mode((800,600))
 clock = pygame.time.Clock()
@@ -26,6 +27,7 @@ class Vec2:
 disc = Vec2(395, 500)
 disc_velocity = Vec2(0, 0)
 mouse_down = False
+mouse_pos = pygame.mouse.get_pos()
 
 while True:
     for event in pygame.event.get():
@@ -35,6 +37,7 @@ while True:
     if(pygame.mouse.get_pressed()[0] and mouse_down == False):
         mouse_down = True
         pygame.mouse.get_rel()
+        mouse_pos = pygame.mouse.get_pos()
     elif(not pygame.mouse.get_pressed()[0] and mouse_down == True):
         mouse_down = False
         mouse_movement = pygame.mouse.get_rel()
@@ -51,6 +54,8 @@ while True:
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
     pygame.draw.ellipse(screen, COLOR_HOLE, [390, 120, 20, 20])
     pygame.draw.ellipse(screen, COLOR_DISC, [disc.x, disc.y, 10, 10])
+    if(mouse_down):
+        pygame.draw.line(screen, COLOR_ARROW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
     pygame.display.update()
     clock.tick(frame_rate)
