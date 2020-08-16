@@ -24,7 +24,7 @@ class Vec2:
     y: float
 
 disc = Vec2(395, 500)
-disc_velocity = Vec2(0, -40)
+disc_velocity = Vec2(0, -100)
 
 while True:
     for event in pygame.event.get():
