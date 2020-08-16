@@ -20,8 +20,8 @@ class Vec2:
     def __init__(self, x_init, y_init):
         self.x = x_init
         self.y = y_init
-    x: float
-    y: float
+    x: int
+    y: int
 
 disc = Vec2(395, 500)
 disc_velocity = Vec2(0, -100)
