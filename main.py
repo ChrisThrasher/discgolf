@@ -4,6 +4,7 @@ import math
 import pygame
 
 pygame.init()
+running = True;
 
 COLOR_ROUGH = (16, 122, 39)
 COLOR_FAIRWAY = (16, 163, 48)
@@ -28,8 +29,9 @@ disc = Vec2(395, 500)
 disc_velocity = Vec2(0, 0)
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
+stroke_count = 0
 
-while True:
+while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             quit()
@@ -43,10 +45,13 @@ while True:
         mouse_movement = pygame.mouse.get_rel()
         disc_velocity.x = mouse_movement[0]
         disc_velocity.y = mouse_movement[1]
+        stroke_count = stroke_count + 1
 
     if (math.sqrt(pow(disc.x - 400, 2) + pow(disc.y - 130, 2)) > 10):
         disc.x = frame_period * disc_velocity.x + disc.x
         disc.y = frame_period * disc_velocity.y + disc.y
+    else:
+        running = False
 
     screen.fill(COLOR_ROUGH)
 
@@ -60,4 +65,5 @@ while True:
     pygame.display.update()
     clock.tick(frame_rate)
 
+print("Completed the hole in", stroke_count, "strokes.")
 pygame.quit()
