@@ -71,8 +71,8 @@ while running:
         cutoff_velocity = 20
         if(math.sqrt(pow(disc_velocity.x, 2) + pow(disc_velocity.y, 2)) < cutoff_velocity):
             disc_velocity = Vec2(0, 0)
-        disc.x = frame_period * disc_velocity.x + disc.x
-        disc.y = frame_period * disc_velocity.y + disc.y
+        disc.x = int(frame_period * disc_velocity.x + disc.x)
+        disc.y = int(frame_period * disc_velocity.y + disc.y)
     else:
         print("Completed the hole in", stroke_count, "strokes.")
         running = False
@@ -80,12 +80,12 @@ while running:
     if (disc.x < 0 or disc.x > screen_width or disc.y < 0 or disc.y > screen_height):
         print("Exited the play area.")
         running = False
-        
+
     # Obstacle Check
-    if (disc.x >= treeLine.x - treeLine.width/2 and disc.x <= treeLine.x + treeLine.width/2 and 
+    if (disc.x >= treeLine.x - treeLine.width/2 and disc.x <= treeLine.x + treeLine.width/2 and
     disc.y >= treeLine.y - treeLine.height/2 and disc.y <= treeLine.y + treeLine.height/2):
-           disc_velocity.x = 0
-           disc_velocity.y = 0
+        disc_velocity.x = 0
+        disc_velocity.y = 0
 
     screen.fill(COLOR_ROUGH)
 
@@ -93,7 +93,7 @@ while running:
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
     pygame.draw.ellipse(screen, COLOR_HOLE, [390, 120, 20, 20])
     pygame.draw.ellipse(screen, COLOR_DISC, [disc.x, disc.y, 10, 10])
-    pygame.draw.rect(screen, COLOR_OBSTACLE, [treeLine.x - treeLine.width/2, treeLine.y, treeLine.width, treeLine.height])
+    pygame.draw.rect(screen, COLOR_OBSTACLE, [int(treeLine.x - treeLine.width/2), int(treeLine.y), treeLine.width, treeLine.height])
     if(mouse_down):
         pygame.draw.line(screen, COLOR_ARROW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
