@@ -51,7 +51,7 @@ mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
 
-trees = [Circle(400, 300, 10), Circle(400, 350, 10)]
+trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
 
 while running:
     for event in pygame.event.get():
