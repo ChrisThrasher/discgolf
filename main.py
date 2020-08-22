@@ -58,7 +58,7 @@ while running:
         if event.type == pygame.QUIT:
             quit()
 
-    if(pygame.mouse.get_pressed()[0] and mouse_down == False):
+    if(pygame.mouse.get_pressed()[0] and mouse_down == False and disc_velocity.x == 0 and disc_velocity.y == 0):
         mouse_down = True
         pygame.mouse.get_rel()
         mouse_pos = pygame.mouse.get_pos()
