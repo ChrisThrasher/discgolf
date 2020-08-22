@@ -38,6 +38,8 @@ class Disc(Circle):
         if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
             return True
         return False
+    def speed(self):
+        return math.sqrt(pow(self.vx, 2) + pow(self.vy, 2))
     def stop(self):
         self.vx = 0
         self.vy = 0
@@ -73,7 +75,7 @@ while running:
         disc.vx = disc.vx - np.sign(disc.vx) * wind_resistance * pow(disc.vx, 2)
         disc.vy = disc.vy - np.sign(disc.vy) * wind_resistance * pow(disc.vy, 2)
         cutoff_velocity = 30
-        if(math.sqrt(pow(disc.vx, 2) + pow(disc.vy, 2)) < cutoff_velocity):
+        if(disc.speed() < cutoff_velocity):
             disc.stop()
         disc.x = frame_period * disc.vx + disc.x
         disc.y = frame_period * disc.vy + disc.y
