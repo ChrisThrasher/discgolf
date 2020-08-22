@@ -44,8 +44,14 @@ class Circle:
     y: int
     radius: int
 
-disc = Circle(395, 500, 10)
-disc_velocity = Vec2(0, 0)
+class Disc(Circle):
+    def stop(self):
+        self.vx = 0
+        self.vy = 0
+    vx: int = 0
+    vy: int = 0
+
+disc = Disc(395, 500, 10)
 hole = Circle(390, 120, 20)
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
@@ -58,26 +64,26 @@ while running:
         if event.type == pygame.QUIT:
             quit()
 
-    if(pygame.mouse.get_pressed()[0] and mouse_down == False and disc_velocity.x == 0 and disc_velocity.y == 0):
+    if(pygame.mouse.get_pressed()[0] and mouse_down == False and disc.vx == 0 and disc.vy == 0):
         mouse_down = True
         pygame.mouse.get_rel()
         mouse_pos = pygame.mouse.get_pos()
     elif(not pygame.mouse.get_pressed()[0] and mouse_down == True):
         mouse_down = False
         mouse_movement = pygame.mouse.get_rel()
-        disc_velocity.x = mouse_movement[0]
-        disc_velocity.y = mouse_movement[1]
+        disc.vx = mouse_movement[0]
+        disc.vy = mouse_movement[1]
         stroke_count = stroke_count + 1
 
     if (not disc.hit(hole)):
         wind_resistance = 0.0004
-        disc_velocity.x = disc_velocity.x - np.sign(disc_velocity.x) * wind_resistance * pow(disc_velocity.x, 2)
-        disc_velocity.y = disc_velocity.y - np.sign(disc_velocity.y) * wind_resistance * pow(disc_velocity.y, 2)
+        disc.vx = disc.vx - np.sign(disc.vx) * wind_resistance * pow(disc.vx, 2)
+        disc.vy = disc.vy - np.sign(disc.vy) * wind_resistance * pow(disc.vy, 2)
         cutoff_velocity = 30
-        if(math.sqrt(pow(disc_velocity.x, 2) + pow(disc_velocity.y, 2)) < cutoff_velocity):
-            disc_velocity = Vec2(0, 0)
-        disc.x = frame_period * disc_velocity.x + disc.x
-        disc.y = frame_period * disc_velocity.y + disc.y
+        if(math.sqrt(pow(disc.vx, 2) + pow(disc.vy, 2)) < cutoff_velocity):
+            disc.stop()
+        disc.x = frame_period * disc.vx + disc.x
+        disc.y = frame_period * disc.vy + disc.y
     else:
         print("Completed the hole in", stroke_count, "strokes.")
         running = False
@@ -89,8 +95,8 @@ while running:
     # Obstacle Check
     for tree in trees:
         if (disc.hit(tree)):
-            disc_velocity.x = 0
-            disc_velocity.y = 0
+            disc.vx = 0
+            disc.vy = 0
 
     screen.fill(COLOR_ROUGH)
 
