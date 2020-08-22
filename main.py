@@ -7,9 +7,6 @@ import pygame
 pygame.init()
 running = True;
 
-COLOR_ROUGH = (16, 122, 39)
-COLOR_FAIRWAY = (16, 163, 48)
-COLOR_TEE = (155, 155, 155)
 COLOR_ARROW = (227, 220, 32)
 
 screen_width = 800
@@ -63,6 +60,17 @@ class Basket(Circle):
     def draw(self):
         Circle.draw(self, (82, 82, 82))
 
+class Hole():
+    def draw(self):
+        COLOR_ROUGH = (16, 122, 39)
+        COLOR_FAIRWAY = (16, 163, 48)
+        COLOR_TEE = (155, 155, 155)
+
+        screen.fill(COLOR_ROUGH)
+        pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
+        pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
+
+hole = Hole()
 disc = Disc(395, 500, 10)
 basket = Basket(390, 120, 20)
 mouse_down = False
@@ -106,10 +114,7 @@ while running:
             disc.vx = 0
             disc.vy = 0
 
-    screen.fill(COLOR_ROUGH)
-
-    pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
-    pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
+    hole.draw()
     basket.draw()
     disc.draw()
     for tree in trees:
