@@ -59,12 +59,12 @@ class Tree(Circle):
     def draw(self):
         Circle.draw(self, (11, 61, 17))
 
-class Hole(Circle):
+class Basket(Circle):
     def draw(self):
         Circle.draw(self, (82, 82, 82))
 
 disc = Disc(395, 500, 10)
-hole = Hole(390, 120, 20)
+basket = Basket(390, 120, 20)
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
@@ -87,7 +87,7 @@ while running:
         disc.vy = mouse_movement[1] * 2
         stroke_count = stroke_count + 1
 
-    if (not disc.hit(hole)):
+    if (not disc.hit(basket)):
         disc.update_velocity()
         if(disc.speed() < 30):
             disc.stop()
@@ -110,7 +110,7 @@ while running:
 
     pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
-    hole.draw()
+    basket.draw()
     disc.draw()
     for tree in trees:
         tree.draw()
