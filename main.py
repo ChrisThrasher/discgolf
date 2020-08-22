@@ -37,9 +37,10 @@ class Disc(Circle):
     def update_position(self):
         self.x = frame_period * self.vx + self.x
         self.y = frame_period * self.vy + self.y
-    def update_velocity(self, resistance):
-        self.vx = self.vx - np.sign(self.vx) * resistance * pow(self.vx, 2)
-        self.vy = self.vy - np.sign(self.vy) * resistance * pow(self.vy, 2)
+    def update_velocity(self):
+        wind_resistance = 0.0004
+        self.vx = self.vx - np.sign(self.vx) * wind_resistance * pow(self.vx, 2)
+        self.vy = self.vy - np.sign(self.vy) * wind_resistance * pow(self.vy, 2)
     def hit(self, obs):
         if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
             return True
@@ -77,8 +78,7 @@ while running:
         stroke_count = stroke_count + 1
 
     if (not disc.hit(hole)):
-        wind_resistance = 0.0004
-        disc.update_velocity(wind_resistance)
+        disc.update_velocity()
         if(disc.speed() < 30):
             disc.stop()
         disc.update_position()
