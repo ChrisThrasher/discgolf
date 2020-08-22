@@ -7,8 +7,6 @@ import pygame
 pygame.init()
 running = True;
 
-COLOR_ARROW = (227, 220, 32)
-
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
@@ -120,7 +118,7 @@ while running:
     for tree in trees:
         tree.draw()
     if(mouse_down):
-        pygame.draw.line(screen, COLOR_ARROW, mouse_pos, pygame.mouse.get_pos(), width=5)
+        pygame.draw.line(screen, (227, 220, 32), mouse_pos, pygame.mouse.get_pos(), width=5)
 
     pygame.display.update()
     clock.tick(frame_rate)
