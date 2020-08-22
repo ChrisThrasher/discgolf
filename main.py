@@ -36,21 +36,24 @@ class Disc(Circle):
         self.y = frame_period * self.vy + self.y
     def update_velocity(self):
         wind_resistance = 0.0004
-        self.vx = self.vx - np.sign(self.vx) * wind_resistance * pow(self.vx, 2)
-        self.vy = self.vy - np.sign(self.vy) * wind_resistance * pow(self.vy, 2)
+        resistive_force = wind_resistance * pow(self.speed(), 2)
+        self.vx = self.vx - resistive_force * math.cos(self.heading())
+        self.vy = self.vy - resistive_force * math.sin(self.heading())
     def hit(self, obs):
         if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
             return True
         return False
     def speed(self):
         return math.sqrt(pow(self.vx, 2) + pow(self.vy, 2))
+    def heading(self):
+        return math.atan2(self.vy, self.vx)
     def stop(self):
         self.vx = 0
         self.vy = 0
     def draw(self):
         Circle.draw(self, (176, 23, 12))
-    vx: int = 0
-    vy: int = 0
+    vx: float = 0.0
+    vy: float = 0.0
 
 class Tree(Circle):
     def draw(self):
