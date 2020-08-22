@@ -34,10 +34,6 @@ class Circle:
         self.x = x
         self.y = y
         self.radius = radius
-    def hit(self, other):
-        if(pow(other.x - self.x, 2) + pow(other.y - self.y, 2) <= pow((self.radius + other.radius) / 2, 2)):
-            return True
-        return False
     def draw(self, color):
         pygame.draw.ellipse(screen, color, [int(self.x), int(self.y), self.radius, self.radius])
     x: int
@@ -45,6 +41,10 @@ class Circle:
     radius: int
 
 class Disc(Circle):
+    def hit(self, obs):
+        if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
+            return True
+        return False
     def stop(self):
         self.vx = 0
         self.vy = 0
