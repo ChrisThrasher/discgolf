@@ -13,7 +13,7 @@ COLOR_TEE = (155, 155, 155)
 COLOR_HOLE = (82, 82, 82)
 COLOR_DISC = (176, 23, 12)
 COLOR_ARROW = (227, 220, 32)
-COLOR_OBSTACLE = (189, 47, 47)
+COLOR_TREE = (11, 61, 17)
 
 screen_width = 800
 screen_height = 600
@@ -96,7 +96,7 @@ while running:
     pygame.draw.ellipse(screen, COLOR_HOLE, [390, 120, 20, 20])
     pygame.draw.ellipse(screen, COLOR_DISC, [disc.x, disc.y, 10, 10])
     for tree in trees:
-        pygame.draw.ellipse(screen, COLOR_OBSTACLE, [tree.x, tree.y, tree.radius, tree.radius])
+        pygame.draw.ellipse(screen, COLOR_TREE, [tree.x, tree.y, tree.radius, tree.radius])
     if(mouse_down):
         pygame.draw.line(screen, COLOR_ARROW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
