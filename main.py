@@ -70,10 +70,10 @@ while running:
         stroke_count = stroke_count + 1
 
     if (not disc.hit(hole)):
-        wind_resistance = 0.0002
+        wind_resistance = 0.0004
         disc_velocity.x = disc_velocity.x - np.sign(disc_velocity.x) * wind_resistance * pow(disc_velocity.x, 2)
         disc_velocity.y = disc_velocity.y - np.sign(disc_velocity.y) * wind_resistance * pow(disc_velocity.y, 2)
-        cutoff_velocity = 20
+        cutoff_velocity = 30
         if(math.sqrt(pow(disc_velocity.x, 2) + pow(disc_velocity.y, 2)) < cutoff_velocity):
             disc_velocity = Vec2(0, 0)
         disc.x = frame_period * disc_velocity.x + disc.x
