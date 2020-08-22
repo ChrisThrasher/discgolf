@@ -22,13 +22,6 @@ clock = pygame.time.Clock()
 frame_rate = 60;
 frame_period = 1.0 / frame_rate;
 
-class Vec2:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-    x: int
-    y: int
-
 class Circle:
     def __init__(self, x, y, radius):
         self.x = x
