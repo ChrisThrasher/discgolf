@@ -44,6 +44,7 @@ class Circle:
 
 disc = Circle(395, 500, 10)
 disc_velocity = Vec2(0, 0)
+hole = Circle(390, 120, 20)
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
@@ -66,7 +67,7 @@ while running:
         disc_velocity.y = mouse_movement[1]
         stroke_count = stroke_count + 1
 
-    if (math.sqrt(pow(disc.x - 390, 2) + pow(disc.y - 120, 2)) > 10):
+    if (not disc.hit(hole)):
         wind_resistance = 0.0002
         disc_velocity.x = disc_velocity.x - np.sign(disc_velocity.x) * wind_resistance * pow(disc_velocity.x, 2)
         disc_velocity.y = disc_velocity.y - np.sign(disc_velocity.y) * wind_resistance * pow(disc_velocity.y, 2)
@@ -85,7 +86,7 @@ while running:
 
     # Obstacle Check
     for tree in trees:
-        if (tree.hit(disc)):
+        if (disc.hit(tree)):
             disc_velocity.x = 0
             disc_velocity.y = 0
 
@@ -93,7 +94,7 @@ while running:
 
     pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
-    pygame.draw.ellipse(screen, COLOR_HOLE, [390, 120, 20, 20])
+    pygame.draw.ellipse(screen, COLOR_HOLE, [hole.x, hole.y, hole.radius, hole.radius])
     pygame.draw.ellipse(screen, COLOR_DISC, [int(disc.x), int(disc.y), disc.radius, disc.radius])
     for tree in trees:
         pygame.draw.ellipse(screen, COLOR_TREE, [tree.x, tree.y, tree.radius, tree.radius])
