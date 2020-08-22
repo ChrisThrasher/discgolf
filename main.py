@@ -35,7 +35,7 @@ class Tree:
         self.y = y
         self.radius = radius
     def hit(self, disc):
-        if(math.sqrt(pow(disc.x - self.x, 2) + pow(disc.y - self.y, 2)) <= self.radius):
+        if(pow(disc.x - self.x, 2) + pow(disc.y - self.y, 2) <= pow(self.radius, 2)):
             return True
         return False
     x: int
