@@ -23,16 +23,16 @@ frame_rate = 60;
 frame_period = 1.0 / frame_rate;
 
 class Vec2:
-    def __init__(self, x_init, y_init):
-        self.x = x_init
-        self.y = y_init
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
     x: int
     y: int
 
 class Tree:
-    def __init__(self,xo,yo,radius):
-        self.x = xo
-        self.y = yo
+    def __init__(self, x, y, radius):
+        self.x = x
+        self.y = y
         self.radius = radius
     def hit(self, disc):
         if(math.sqrt(pow(disc.x - self.x, 2) + pow(disc.y - self.y, 2)) <= self.radius):
@@ -48,7 +48,7 @@ mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
 
-tree = Tree(400, 300, 10)
+trees = [Tree(400, 300, 10), Tree(400, 350, 10)]
 
 while running:
     for event in pygame.event.get():
@@ -84,9 +84,10 @@ while running:
         running = False
 
     # Obstacle Check
-    if (tree.hit(disc)):
-        disc_velocity.x = 0
-        disc_velocity.y = 0
+    for tree in trees:
+        if (tree.hit(disc)):
+            disc_velocity.x = 0
+            disc_velocity.y = 0
 
     screen.fill(COLOR_ROUGH)
 
@@ -94,7 +95,8 @@ while running:
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
     pygame.draw.ellipse(screen, COLOR_HOLE, [390, 120, 20, 20])
     pygame.draw.ellipse(screen, COLOR_DISC, [disc.x, disc.y, 10, 10])
-    pygame.draw.ellipse(screen, COLOR_OBSTACLE, [tree.x, tree.y, tree.radius, tree.radius])
+    for tree in trees:
+        pygame.draw.ellipse(screen, COLOR_OBSTACLE, [tree.x, tree.y, tree.radius, tree.radius])
     if(mouse_down):
         pygame.draw.line(screen, COLOR_ARROW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
