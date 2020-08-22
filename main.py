@@ -38,6 +38,8 @@ class Circle:
         if(pow(other.x - self.x, 2) + pow(other.y - self.y, 2) <= pow((self.radius + other.radius) / 2, 2)):
             return True
         return False
+    def draw(self, color):
+        pygame.draw.ellipse(screen, color, [int(self.x), int(self.y), self.radius, self.radius])
     x: int
     y: int
     radius: int
@@ -94,10 +96,10 @@ while running:
 
     pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
-    pygame.draw.ellipse(screen, COLOR_HOLE, [hole.x, hole.y, hole.radius, hole.radius])
-    pygame.draw.ellipse(screen, COLOR_DISC, [int(disc.x), int(disc.y), disc.radius, disc.radius])
+    hole.draw(COLOR_HOLE)
+    disc.draw(COLOR_DISC)
     for tree in trees:
-        pygame.draw.ellipse(screen, COLOR_TREE, [tree.x, tree.y, tree.radius, tree.radius])
+        tree.draw(COLOR_TREE)
     if(mouse_down):
         pygame.draw.line(screen, COLOR_ARROW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
