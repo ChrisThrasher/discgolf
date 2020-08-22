@@ -6,18 +6,18 @@ To install PyGame in macOS 10.15:
 
 # Development Goals
 
-[x] 1-hole game
+- [x] 1-hole game
 
-[x] Stroke counting
+- [x] Stroke counting
 
-[x] Obstacles (like trees)
+- [x] Obstacles (like trees)
 
-[x] Wind resistance
+- [x] Wind resistance
 
-[ ] Multiple types of discs
+- [ ] Multiple types of discs
 
-[ ] 9-hole course
+- [ ] 9-hole course
 
-[ ] Curved disc paths
+- [ ] Curved disc paths
 
-[ ] Wind (speed and direction visualized)
+- [ ] Wind (speed and direction visualized)
