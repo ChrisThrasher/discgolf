@@ -42,6 +42,8 @@ class Disc(Circle):
         return math.sqrt(pow(self.vx, 2) + pow(self.vy, 2))
     def heading(self):
         return math.atan2(self.vy, self.vx)
+    def off_screen(self):
+        return disc.x < 0 or disc.x > screen_width or disc.y < 0 or disc.y > screen_height
     def stop(self):
         self.vx = 0
         self.vy = 0
@@ -102,8 +104,8 @@ while running:
         print("Completed the hole in", stroke_count, "strokes.")
         running = False
 
-    if (disc.x < 0 or disc.x > screen_width or disc.y < 0 or disc.y > screen_height):
-        print("Exited the play area.")
+    if (disc.off_screen()):
+        print("Disc exited the play area.")
         running = False
 
     # Obstacle Check
