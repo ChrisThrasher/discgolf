@@ -34,9 +34,12 @@ class Circle:
     radius: int
 
 class Disc(Circle):
-    def update_position(self)
+    def update_position(self):
         self.x = frame_period * self.vx + self.x
         self.y = frame_period * self.vy + self.y
+    def update_velocity(self, resistance):
+        self.vx = self.vx - np.sign(self.vx) * resistance * pow(self.vx, 2)
+        self.vy = self.vy - np.sign(self.vy) * resistance * pow(self.vy, 2)
     def hit(self, obs):
         if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
             return True
@@ -75,8 +78,7 @@ while running:
 
     if (not disc.hit(hole)):
         wind_resistance = 0.0004
-        disc.vx = disc.vx - np.sign(disc.vx) * wind_resistance * pow(disc.vx, 2)
-        disc.vy = disc.vy - np.sign(disc.vy) * wind_resistance * pow(disc.vy, 2)
+        disc.update_velocity(wind_resistance)
         if(disc.speed() < 30):
             disc.stop()
         disc.update_position()
