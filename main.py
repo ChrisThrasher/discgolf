@@ -34,8 +34,8 @@ class Circle:
         self.x = x
         self.y = y
         self.radius = radius
-    def hit(self, disc):
-        if(pow(disc.x - self.x, 2) + pow(disc.y - self.y, 2) <= pow((self.radius + disc.radius) / 2, 2)):
+    def hit(self, other):
+        if(pow(other.x - self.x, 2) + pow(other.y - self.y, 2) <= pow((self.radius + other.radius) / 2, 2)):
             return True
         return False
     x: int
