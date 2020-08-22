@@ -72,8 +72,8 @@ while running:
     elif(not pygame.mouse.get_pressed()[0] and mouse_down == True):
         mouse_down = False
         mouse_movement = pygame.mouse.get_rel()
-        disc.vx = mouse_movement[0]
-        disc.vy = mouse_movement[1]
+        disc.vx = mouse_movement[0] * 2
+        disc.vy = mouse_movement[1] * 2
         stroke_count = stroke_count + 1
 
     if (not disc.hit(hole)):
