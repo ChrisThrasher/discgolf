@@ -10,10 +10,7 @@ running = True;
 COLOR_ROUGH = (16, 122, 39)
 COLOR_FAIRWAY = (16, 163, 48)
 COLOR_TEE = (155, 155, 155)
-COLOR_HOLE = (82, 82, 82)
-COLOR_DISC = (176, 23, 12)
 COLOR_ARROW = (227, 220, 32)
-COLOR_TREE = (11, 61, 17)
 
 screen_width = 800
 screen_height = 600
@@ -50,16 +47,26 @@ class Disc(Circle):
     def stop(self):
         self.vx = 0
         self.vy = 0
+    def draw(self):
+        Circle.draw(self, (176, 23, 12))
     vx: int = 0
     vy: int = 0
 
+class Tree(Circle):
+    def draw(self):
+        Circle.draw(self, (11, 61, 17))
+
+class Hole(Circle):
+    def draw(self):
+        Circle.draw(self, (82, 82, 82))
+
 disc = Disc(395, 500, 10)
-hole = Circle(390, 120, 20)
+hole = Hole(390, 120, 20)
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
 
-trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
+trees = [Tree(400, 300, 10), Tree(400, 350, 10), Tree(350, 300, 10)]
 
 while running:
     for event in pygame.event.get():
@@ -100,10 +107,10 @@ while running:
 
     pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
-    hole.draw(COLOR_HOLE)
-    disc.draw(COLOR_DISC)
+    hole.draw()
+    disc.draw()
     for tree in trees:
-        tree.draw(COLOR_TREE)
+        tree.draw()
     if(mouse_down):
         pygame.draw.line(screen, COLOR_ARROW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
