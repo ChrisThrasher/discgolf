@@ -29,26 +29,26 @@ class Vec2:
     x: int
     y: int
 
-class Tree:
+class Circle:
     def __init__(self, x, y, radius):
         self.x = x
         self.y = y
         self.radius = radius
     def hit(self, disc):
-        if(pow(disc.x - self.x, 2) + pow(disc.y - self.y, 2) <= pow(self.radius, 2)):
+        if(pow(disc.x - self.x, 2) + pow(disc.y - self.y, 2) <= pow((self.radius + disc.radius) / 2, 2)):
             return True
         return False
     x: int
     y: int
     radius: int
 
-disc = Vec2(395, 500)
+disc = Circle(395, 500, 10)
 disc_velocity = Vec2(0, 0)
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
 
-trees = [Tree(400, 300, 10), Tree(400, 350, 10)]
+trees = [Circle(400, 300, 10), Circle(400, 350, 10)]
 
 while running:
     for event in pygame.event.get():
@@ -94,7 +94,7 @@ while running:
     pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
     pygame.draw.ellipse(screen, COLOR_HOLE, [390, 120, 20, 20])
-    pygame.draw.ellipse(screen, COLOR_DISC, [int(disc.x), int(disc.y), 10, 10])
+    pygame.draw.ellipse(screen, COLOR_DISC, [int(disc.x), int(disc.y), disc.radius, disc.radius])
     for tree in trees:
         pygame.draw.ellipse(screen, COLOR_TREE, [tree.x, tree.y, tree.radius, tree.radius])
     if(mouse_down):
