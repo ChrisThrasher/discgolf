@@ -73,8 +73,8 @@ while running:
         cutoff_velocity = 20
         if(math.sqrt(pow(disc_velocity.x, 2) + pow(disc_velocity.y, 2)) < cutoff_velocity):
             disc_velocity = Vec2(0, 0)
-        disc.x = int(frame_period * disc_velocity.x + disc.x)
-        disc.y = int(frame_period * disc_velocity.y + disc.y)
+        disc.x = frame_period * disc_velocity.x + disc.x
+        disc.y = frame_period * disc_velocity.y + disc.y
     else:
         print("Completed the hole in", stroke_count, "strokes.")
         running = False
@@ -94,7 +94,7 @@ while running:
     pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
     pygame.draw.ellipse(screen, COLOR_HOLE, [390, 120, 20, 20])
-    pygame.draw.ellipse(screen, COLOR_DISC, [disc.x, disc.y, 10, 10])
+    pygame.draw.ellipse(screen, COLOR_DISC, [int(disc.x), int(disc.y), 10, 10])
     for tree in trees:
         pygame.draw.ellipse(screen, COLOR_TREE, [tree.x, tree.y, tree.radius, tree.radius])
     if(mouse_down):
