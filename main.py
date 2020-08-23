@@ -69,7 +69,36 @@ class Hole():
         screen.fill(COLOR_ROUGH)
         pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
         pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
-
+        
+class Wind(Circle):
+    def generateWind(self):
+        self.speed     = np.random.rand() * float(10)
+        self.direction = np.deg2rad(np.random.randint(360))
+        self.vx = self.speed * np.cos(self.direction)
+        self.vy = self.speed * np.sin(self.direction)
+    def drawCompass(self):
+        Circle.draw(self,(201, 191, 189))
+        needleColor = (255, 255, 255)
+        start_pos = (self.x + self.radius * 0.5,self.y + self.radius * 0.5)
+        end_pos = (start_pos[0] - 0.5 * self.radius * np.cos(self.direction), 
+                   start_pos[1] - 0.5 * self.radius * np.sin(self.direction))
+        width = 5
+        pygame.draw.line(screen, needleColor, start_pos, end_pos, width)
+        self.message_display(('Wind Speed: ' + str(round(self.speed,1))))
+    def text_objects(self,text, font):
+        textSurface = font.render(text, True, (255, 255, 255))
+        return textSurface, textSurface.get_rect()
+    def message_display(self,text):
+        largeText = pygame.font.Font('freesansbold.ttf',16)
+        TextSurf, TextRect = self.text_objects(text, largeText)
+        TextRect.center = (self.x + self.radius * 0.5, self.y - 15)
+        screen.blit(TextSurf, TextRect)
+        
+    vx: float = 0.0
+    vy: float = 0.0
+    speed: float = 0.0
+    direction: float = 0.0
+        
 hole = Hole()
 disc = Disc(395, 500, 10)
 basket = Basket(390, 120, 20)
@@ -78,6 +107,8 @@ mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
 
 trees = [Tree(400, 300, 10), Tree(400, 350, 10), Tree(350, 300, 10)]
+wind = Wind(50, 50, 100)
+wind.generateWind()
 
 while running:
     for event in pygame.event.get():
@@ -91,8 +122,8 @@ while running:
     elif(not pygame.mouse.get_pressed()[0] and mouse_down == True):
         mouse_down = False
         mouse_movement = pygame.mouse.get_rel()
-        disc.vx = mouse_movement[0] * 2
-        disc.vy = mouse_movement[1] * 2
+        disc.vx = mouse_movement[0] * 2 + wind.vx
+        disc.vy = mouse_movement[1] * 2 + wind.vy
         stroke_count = stroke_count + 1
 
     if (not disc.hit(basket)):
@@ -117,6 +148,7 @@ while running:
     hole.draw()
     basket.draw()
     disc.draw()
+    wind.drawCompass()
     for tree in trees:
         tree.draw()
     if(mouse_down):
