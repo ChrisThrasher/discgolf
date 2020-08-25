@@ -33,17 +33,19 @@ class Disc(Circle):
         if (self.height < 0 or self.speed() == 0):
             self.stop()
             return
-        self.height = self.height - 0.01
-        wind_resistance = 0.0004
-        resistive_force = wind_resistance * pow(self.speed(), 2)
-        self.vx = self.vx - resistive_force * math.cos(self.heading()) + 0.05 * wind.vx
-        self.vy = self.vy - resistive_force * math.sin(self.heading()) + 0.05 * wind.vy
+        self.height = self.height - 0.005
+        resistance_coef = 0.005
+        resistive_accel = resistance_coef * self.relative_speed2(wind)
+        self.vx = self.vx - resistive_accel * math.cos(self.heading()) * frame_period
+        self.vy = self.vy - resistive_accel * math.sin(self.heading()) * frame_period
     def hit(self, obs):
         if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
             return True
         return False
     def speed(self):
         return math.sqrt(pow(self.vx, 2) + pow(self.vy, 2))
+    def relative_speed2(self, wind):
+        return pow(self.vx - wind.vx, 2) + pow(self.vy - wind.vy, 2)
     def heading(self):
         return math.atan2(self.vy, self.vx)
     def off_screen(self):
