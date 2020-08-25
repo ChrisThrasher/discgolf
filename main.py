@@ -84,7 +84,7 @@ class Wind(Circle):
         self.heading = np.deg2rad(np.random.randint(360))
         self.vx = self.speed * np.cos(self.heading)
         self.vy = self.speed * np.sin(self.heading)
-    def drawCompass(self):
+    def draw(self):
         Circle.draw(self,(201, 191, 189))
         needleColor = (255, 255, 255)
         start_pos = (int(self.x + self.radius * 0.5),
@@ -157,7 +157,7 @@ while running:
     hole.draw()
     basket.draw()
     disc.draw()
-    wind.drawCompass()
+    wind.draw()
     for tree in trees:
         tree.draw()
     if(mouse_down):
