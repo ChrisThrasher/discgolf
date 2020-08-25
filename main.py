@@ -29,11 +29,15 @@ class Disc(Circle):
     def update_position(self):
         self.x = frame_period * self.vx + self.x
         self.y = frame_period * self.vy + self.y
-    def update_velocity(self):
+    def update_velocity(self, wind):
+        if (self.height < 0 or self.speed() == 0):
+            self.stop()
+            return
+        self.height = self.height - 0.01
         wind_resistance = 0.0004
         resistive_force = wind_resistance * pow(self.speed(), 2)
-        self.vx = self.vx - resistive_force * math.cos(self.heading())
-        self.vy = self.vy - resistive_force * math.sin(self.heading())
+        self.vx = self.vx - resistive_force * math.cos(self.heading()) + 0.05 * wind.vx
+        self.vy = self.vy - resistive_force * math.sin(self.heading()) + 0.05 * wind.vy
     def hit(self, obs):
         if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
             return True
@@ -47,10 +51,12 @@ class Disc(Circle):
     def stop(self):
         self.vx = 0
         self.vy = 0
+        self.height = 1.0
     def draw(self):
         Circle.draw(self, (176, 23, 12))
     vx: float = 0.0
     vy: float = 0.0
+    height: float = 1.0
 
 class Tree(Circle):
     def draw(self):
@@ -124,11 +130,11 @@ while running:
         mouse_down = False
         mouse_movement = pygame.mouse.get_rel()
         disc.vx = mouse_movement[0] * 2 + wind.vx
-        disc.vy = mouse_movement[1] * 2 + wind.vy        
+        disc.vy = mouse_movement[1] * 2 + wind.vy
         stroke_count = stroke_count + 1
 
     if (not disc.hit(basket)):
-        disc.update_velocity()
+        disc.update_velocity(wind)
         if(disc.speed() < 30):
             disc.stop()
         disc.update_position()
