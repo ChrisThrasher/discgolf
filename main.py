@@ -54,7 +54,7 @@ class Disc(Circle):
         self.vx = 0
         self.vy = 0
         self.height = 1.0
-    def draw(self, wind):
+    def draw(self):
         Circle.draw(self, (176, 23, 12))
     vx: float = 0.0
     vy: float = 0.0
@@ -156,7 +156,7 @@ while running:
 
     hole.draw()
     basket.draw()
-    disc.draw(wind)
+    disc.draw()
     wind.drawCompass()
     for tree in trees:
         tree.draw()
