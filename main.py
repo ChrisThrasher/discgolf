@@ -34,10 +34,10 @@ class Disc(Circle):
             self.stop()
             return
         self.height = self.height - 0.005
-        resistance_coef = 0.005
+        resistance_coef = 0.015
         resistive_accel = resistance_coef * self.relative_speed2(wind)
-        self.vx = self.vx - resistive_accel * math.cos(self.heading()) * frame_period
-        self.vy = self.vy - resistive_accel * math.sin(self.heading()) * frame_period
+        self.vx = self.vx - resistive_accel * math.cos(self.relative_heading(wind)) * frame_period
+        self.vy = self.vy - resistive_accel * math.sin(self.relative_heading(wind)) * frame_period
     def hit(self, obs):
         if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
             return True
@@ -46,15 +46,15 @@ class Disc(Circle):
         return math.sqrt(pow(self.vx, 2) + pow(self.vy, 2))
     def relative_speed2(self, wind):
         return pow(self.vx - wind.vx, 2) + pow(self.vy - wind.vy, 2)
-    def heading(self):
-        return math.atan2(self.vy, self.vx)
+    def relative_heading(self, wind):
+        return math.atan2(self.vy - wind.vy, self.vx - wind.vx)
     def off_screen(self):
         return disc.x < 0 or disc.x > screen_width or disc.y < 0 or disc.y > screen_height
     def stop(self):
         self.vx = 0
         self.vy = 0
         self.height = 1.0
-    def draw(self):
+    def draw(self, wind):
         Circle.draw(self, (176, 23, 12))
     vx: float = 0.0
     vy: float = 0.0
@@ -137,7 +137,7 @@ while running:
 
     if (not disc.hit(basket)):
         disc.update_velocity(wind)
-        if(disc.speed() < 30):
+        if(disc.speed() < 15):
             disc.stop()
         disc.update_position()
     else:
@@ -156,7 +156,7 @@ while running:
 
     hole.draw()
     basket.draw()
-    disc.draw()
+    disc.draw(wind)
     wind.drawCompass()
     for tree in trees:
         tree.draw()
