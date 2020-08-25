@@ -79,8 +79,9 @@ class Hole():
         pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
 
 class Wind(Circle):
-    def generateWind(self):
-        self.speed   = np.random.rand() * 50.0
+    def __init__(self, x, y, radius, max_speed):
+        super().__init__(x, y, radius)
+        self.speed   = np.random.rand() * max_speed
         self.heading = np.deg2rad(np.random.randint(360))
         self.vx = self.speed * np.cos(self.heading)
         self.vy = self.speed * np.sin(self.heading)
@@ -102,7 +103,6 @@ class Wind(Circle):
         TextSurf, TextRect = self.text_objects(text, windSpeedText)
         TextRect.center = (int(self.x + self.radius * 0.5), int(self.y - 15))
         screen.blit(TextSurf, TextRect)
-
     vx: float = 0.0
     vy: float = 0.0
     speed: float = 0.0
@@ -116,8 +116,7 @@ mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
 
 trees = [Tree(400, 300, 10), Tree(400, 350, 10), Tree(350, 300, 10)]
-wind = Wind(50, 50, 100)
-wind.generateWind()
+wind = Wind(50, 50, 100, max_speed=50)
 
 while running:
     for event in pygame.event.get():
