@@ -69,7 +69,7 @@ class Hole():
         screen.fill(COLOR_ROUGH)
         pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
         pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
-        
+
 class Wind(Circle):
     def generateWind(self):
         self.speed     = np.random.rand() * float(100)
@@ -79,9 +79,10 @@ class Wind(Circle):
     def drawCompass(self):
         Circle.draw(self,(201, 191, 189))
         needleColor = (255, 255, 255)
-        start_pos = (self.x + self.radius * 0.5,self.y + self.radius * 0.5)
-        end_pos = (start_pos[0] + 0.5 * self.radius * np.cos(self.heading), 
-                   start_pos[1] + 0.5 * self.radius * np.sin(self.heading))
+        start_pos = (int(self.x + self.radius * 0.5),
+                     int(self.y + self.radius * 0.5))
+        end_pos = (int(start_pos[0] + 0.5 * self.radius * np.cos(self.heading)),
+                   int(start_pos[1] + 0.5 * self.radius * np.sin(self.heading)))
         width = 5
         pygame.draw.line(screen, needleColor, start_pos, end_pos, width)
         self.message_display(('Wind Speed: ' + str(round(self.speed,1))))
@@ -91,14 +92,14 @@ class Wind(Circle):
     def message_display(self,text):
         windSpeedText = pygame.font.Font('freesansbold.ttf',16)
         TextSurf, TextRect = self.text_objects(text, windSpeedText)
-        TextRect.center = (self.x + self.radius * 0.5, self.y - 15)
+        TextRect.center = (int(self.x + self.radius * 0.5), int(self.y - 15))
         screen.blit(TextSurf, TextRect)
-        
+
     vx: float = 0.0
     vy: float = 0.0
     speed: float = 0.0
     heading: float = 0.0
-        
+
 hole = Hole()
 disc = Disc(395, 500, 10)
 basket = Basket(390, 120, 20)
