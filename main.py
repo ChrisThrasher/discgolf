@@ -80,7 +80,7 @@ class Hole():
 
 class Wind(Circle):
     def generateWind(self):
-        self.speed     = np.random.rand() * float(100)
+        self.speed   = np.random.rand() * 50.0
         self.heading = np.deg2rad(np.random.randint(360))
         self.vx = self.speed * np.cos(self.heading)
         self.vy = self.speed * np.sin(self.heading)
