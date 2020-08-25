@@ -20,4 +20,4 @@ To install PyGame in macOS 10.15:
 
 - [ ] Curved disc paths
 
-- [ ] Wind (speed and direction visualized)
+- [x] Wind (speed and direction visualized)
