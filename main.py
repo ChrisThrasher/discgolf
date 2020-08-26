@@ -4,6 +4,8 @@ import math
 import numpy as np
 import pygame
 
+from Circle import Circle
+
 pygame.init()
 running = True;
 
@@ -14,16 +16,8 @@ clock = pygame.time.Clock()
 frame_rate = 60;
 frame_period = 1.0 / frame_rate;
 
-class Circle:
-    def __init__(self, x, y, radius):
-        self.x = x
-        self.y = y
-        self.radius = radius
-    def draw(self, color):
-        pygame.draw.ellipse(screen, color, [int(self.x), int(self.y), self.radius, self.radius])
-    x: int
-    y: int
-    radius: int
+def DrawCircle(circle, color):
+    pygame.draw.ellipse(screen, color, [int(circle.x), int(circle.y), circle.radius, circle.radius])
 
 class Disc(Circle):
     def update_position(self):
@@ -55,18 +49,18 @@ class Disc(Circle):
         self.vy = 0
         self.height = 1.0
     def draw(self):
-        Circle.draw(self, (176, 23, 12))
+        DrawCircle(self, (176, 23, 12))
     vx: float = 0.0
     vy: float = 0.0
     height: float = 1.0
 
 class Tree(Circle):
     def draw(self):
-        Circle.draw(self, (11, 61, 17))
+        DrawCircle(self, (11, 61, 17))
 
 class Basket(Circle):
     def draw(self):
-        Circle.draw(self, (82, 82, 82))
+        DrawCircle(self, (82, 82, 82))
 
 class Hole():
     def draw(self):
@@ -86,7 +80,7 @@ class Wind(Circle):
         self.vx = self.speed * np.cos(self.heading)
         self.vy = self.speed * np.sin(self.heading)
     def draw(self):
-        Circle.draw(self,(201, 191, 189))
+        DrawCircle(self,(201, 191, 189))
         needleColor = (255, 255, 255)
         start_pos = (int(self.x + self.radius * 0.5),
                      int(self.y + self.radius * 0.5))
