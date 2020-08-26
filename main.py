@@ -5,6 +5,7 @@ import pygame
 
 from Circle import Circle
 from Disc import Disc
+from Wind import Wind
 
 pygame.init()
 running = True;
@@ -18,6 +19,21 @@ frame_period = 1.0 / frame_rate;
 
 def DrawCircle(circle, color):
     pygame.draw.ellipse(screen, color, [int(circle.x), int(circle.y), circle.radius, circle.radius])
+
+def DrawWind(wind):
+    DrawCircle(wind, (201, 191, 189))
+    needleColor = (255, 255, 255)
+    start_pos = (int(wind.x + wind.radius * 0.5),
+                 int(wind.y + wind.radius * 0.5))
+    end_pos = (int(start_pos[0] + 0.5 * wind.radius * np.cos(wind.heading)),
+               int(start_pos[1] + 0.5 * wind.radius * np.sin(wind.heading)))
+    width = 5
+    pygame.draw.line(screen, needleColor, start_pos, end_pos, width)
+    windSpeedText = pygame.font.Font('freesansbold.ttf',16)
+    text = ('Wind Speed: ' + str(round(wind.speed,1)))
+    TextSurf, TextRect = wind.text_objects(text, windSpeedText)
+    TextRect.center = (int(wind.x + wind.radius * 0.5), int(wind.y - 15))
+    screen.blit(TextSurf, TextRect)
 
 class Tree(Circle):
     def draw(self):
@@ -36,36 +52,6 @@ class Hole():
         screen.fill(COLOR_ROUGH)
         pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
         pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
-
-class Wind(Circle):
-    def __init__(self, x, y, radius, max_speed):
-        super().__init__(x, y, radius)
-        self.speed   = np.random.rand() * max_speed
-        self.heading = np.deg2rad(np.random.randint(360))
-        self.vx = self.speed * np.cos(self.heading)
-        self.vy = self.speed * np.sin(self.heading)
-    def draw(self):
-        DrawCircle(self,(201, 191, 189))
-        needleColor = (255, 255, 255)
-        start_pos = (int(self.x + self.radius * 0.5),
-                     int(self.y + self.radius * 0.5))
-        end_pos = (int(start_pos[0] + 0.5 * self.radius * np.cos(self.heading)),
-                   int(start_pos[1] + 0.5 * self.radius * np.sin(self.heading)))
-        width = 5
-        pygame.draw.line(screen, needleColor, start_pos, end_pos, width)
-        self.message_display(('Wind Speed: ' + str(round(self.speed,1))))
-    def text_objects(self,text, font):
-        textSurface = font.render(text, True, (255, 255, 255))
-        return textSurface, textSurface.get_rect()
-    def message_display(self,text):
-        windSpeedText = pygame.font.Font('freesansbold.ttf',16)
-        TextSurf, TextRect = self.text_objects(text, windSpeedText)
-        TextRect.center = (int(self.x + self.radius * 0.5), int(self.y - 15))
-        screen.blit(TextSurf, TextRect)
-    vx: float = 0.0
-    vy: float = 0.0
-    speed: float = 0.0
-    heading: float = 0.0
 
 hole = Hole()
 disc = Disc(395, 500, 10)
@@ -115,7 +101,7 @@ while running:
     hole.draw()
     basket.draw()
     DrawCircle(disc, (176, 23, 12))
-    wind.draw()
+    DrawWind(wind)
     for tree in trees:
         tree.draw()
     if(mouse_down):
