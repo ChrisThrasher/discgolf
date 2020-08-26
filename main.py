@@ -36,8 +36,7 @@ def DrawWind(wind):
     screen.blit(TextSurf, TextRect)
 
 class Tree(Circle):
-    def draw(self):
-        DrawCircle(self, (11, 61, 17))
+    pass
 
 class Basket(Circle):
     def draw(self):
@@ -103,7 +102,7 @@ while running:
     DrawCircle(disc, (176, 23, 12))
     DrawWind(wind)
     for tree in trees:
-        tree.draw()
+        DrawCircle(tree, (11, 61, 17))
     if(mouse_down):
         pygame.draw.line(screen, (227, 220, 32), mouse_pos, pygame.mouse.get_pos(), width=5)
 
