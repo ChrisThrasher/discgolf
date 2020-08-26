@@ -39,8 +39,7 @@ class Tree(Circle):
     pass
 
 class Basket(Circle):
-    def draw(self):
-        DrawCircle(self, (82, 82, 82))
+    pass
 
 class Hole():
     def draw(self):
@@ -98,7 +97,7 @@ while running:
             disc.vy = 0
 
     hole.draw()
-    basket.draw()
+    DrawCircle(basket, (82, 82, 82))
     DrawCircle(disc, (176, 23, 12))
     DrawWind(wind)
     for tree in trees:
