@@ -1,10 +1,10 @@
 #!/usr/local/bin/python3
 
-import math
 import numpy as np
 import pygame
 
 from Circle import Circle
+from Disc import Disc
 
 pygame.init()
 running = True;
@@ -18,41 +18,6 @@ frame_period = 1.0 / frame_rate;
 
 def DrawCircle(circle, color):
     pygame.draw.ellipse(screen, color, [int(circle.x), int(circle.y), circle.radius, circle.radius])
-
-class Disc(Circle):
-    def update_position(self):
-        self.x = frame_period * self.vx + self.x
-        self.y = frame_period * self.vy + self.y
-    def update_velocity(self, wind):
-        if (self.height < 0 or self.speed() == 0):
-            self.stop()
-            return
-        self.height = self.height - 0.005
-        resistance_coef = 0.015
-        resistive_accel = resistance_coef * self.relative_speed2(wind)
-        self.vx = self.vx - resistive_accel * math.cos(self.relative_heading(wind)) * frame_period
-        self.vy = self.vy - resistive_accel * math.sin(self.relative_heading(wind)) * frame_period
-    def hit(self, obs):
-        if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
-            return True
-        return False
-    def speed(self):
-        return math.sqrt(pow(self.vx, 2) + pow(self.vy, 2))
-    def relative_speed2(self, wind):
-        return pow(self.vx - wind.vx, 2) + pow(self.vy - wind.vy, 2)
-    def relative_heading(self, wind):
-        return math.atan2(self.vy - wind.vy, self.vx - wind.vx)
-    def off_screen(self):
-        return disc.x < 0 or disc.x > screen_width or disc.y < 0 or disc.y > screen_height
-    def stop(self):
-        self.vx = 0
-        self.vy = 0
-        self.height = 1.0
-    def draw(self):
-        DrawCircle(self, (176, 23, 12))
-    vx: float = 0.0
-    vy: float = 0.0
-    height: float = 1.0
 
 class Tree(Circle):
     def draw(self):
@@ -129,15 +94,15 @@ while running:
         stroke_count = stroke_count + 1
 
     if (not disc.hit(basket)):
-        disc.update_velocity(wind)
+        disc.update_velocity(frame_period, wind)
         if(disc.speed() < 15):
             disc.stop()
-        disc.update_position()
+        disc.update_position(frame_period)
     else:
         print("Completed the hole in", stroke_count, "strokes.")
         running = False
 
-    if (disc.off_screen()):
+    if (disc.off_screen(screen_width, screen_height)):
         print("Disc exited the play area.")
         running = False
 
@@ -149,7 +114,7 @@ while running:
 
     hole.draw()
     basket.draw()
-    disc.draw()
+    DrawCircle(disc, (176, 23, 12))
     wind.draw()
     for tree in trees:
         tree.draw()
