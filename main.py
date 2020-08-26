@@ -35,23 +35,21 @@ def DrawWind(wind):
     TextRect.center = (int(wind.x + wind.radius * 0.5), int(wind.y - 15))
     screen.blit(TextSurf, TextRect)
 
+def DrawHole():
+    COLOR_ROUGH = (16, 122, 39)
+    COLOR_FAIRWAY = (16, 163, 48)
+    COLOR_TEE = (155, 155, 155)
+
+    screen.fill(COLOR_ROUGH)
+    pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
+    pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
+
 class Tree(Circle):
     pass
 
 class Basket(Circle):
     pass
 
-class Hole():
-    def draw(self):
-        COLOR_ROUGH = (16, 122, 39)
-        COLOR_FAIRWAY = (16, 163, 48)
-        COLOR_TEE = (155, 155, 155)
-
-        screen.fill(COLOR_ROUGH)
-        pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
-        pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
-
-hole = Hole()
 disc = Disc(395, 500, 10)
 basket = Basket(390, 120, 20)
 mouse_down = False
@@ -96,7 +94,7 @@ while running:
             disc.vx = 0
             disc.vy = 0
 
-    hole.draw()
+    DrawHole()
     DrawCircle(basket, (82, 82, 82))
     DrawCircle(disc, (176, 23, 12))
     DrawWind(wind)
