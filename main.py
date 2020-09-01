@@ -56,9 +56,7 @@ while True:
             mouse_pos = pygame.mouse.get_pos()
         if event.type == pygame.MOUSEBUTTONUP and mouse_down == True:
             mouse_down = False
-            mouse_movement = pygame.mouse.get_rel()
-            disc.vx = mouse_movement[0] * 2 + wind.vx
-            disc.vy = mouse_movement[1] * 2 + wind.vy
+            disc.throw(pygame.mouse.get_rel())
             stroke_count = stroke_count + 1
 
     # Update disc

@@ -15,6 +15,10 @@ class Disc(Circle):
         resistive_accel = resistance_coef * self.relative_speed2(wind)
         self.vx = self.vx - resistive_accel * math.cos(self.relative_heading(wind)) * dt
         self.vy = self.vy - resistive_accel * math.sin(self.relative_heading(wind)) * dt
+    def throw(self, mouse_movement):
+        throw_gain = 2.0
+        self.vx = throw_gain * mouse_movement[0]
+        self.vy = throw_gain * mouse_movement[1]
     def hit(self, obs):
         if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
             return True
