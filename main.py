@@ -60,22 +60,22 @@ while True:
             stroke_count = stroke_count + 1
 
     # Update disc
-    if (not disc.hit(basket)):
+    if not disc.hit(basket):
         disc.update_velocity(FRAME_PERIOD, wind)
-        if(disc.speed() < 15):
+        if disc.speed() < 15:
             disc.stop()
         disc.update_position(FRAME_PERIOD)
     else:
         print("Completed the hole in", stroke_count, "strokes.")
         break
 
-    if (disc.off_screen(SCREEN_WIDTH, SCREEN_HEIGHT)):
+    if disc.off_screen(SCREEN_WIDTH, SCREEN_HEIGHT):
         print("Disc exited the play area.")
         break
 
     # Detect obstacle collisions
     for tree in trees:
-        if (disc.hit(tree)):
+        if disc.hit(tree):
             disc.vx = 0
             disc.vy = 0
 
@@ -86,7 +86,7 @@ while True:
     DrawWind(wind)
     for tree in trees:
         DrawCircle(tree, Color.DARK_GREEN)
-    if(mouse_down):
+    if mouse_down:
         pygame.draw.line(screen, Color.YELLOW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
     # Finish cycle
