@@ -61,6 +61,7 @@ while True:
             disc.vy = mouse_movement[1] * 2 + wind.vy
             stroke_count = stroke_count + 1
 
+    # Update disc
     if (not disc.hit(basket)):
         disc.update_velocity(FRAME_PERIOD, wind)
         if(disc.speed() < 15):
@@ -74,12 +75,13 @@ while True:
         print("Disc exited the play area.")
         break
 
-    # Obstacle Check
+    # Detect obstacle collisions
     for tree in trees:
         if (disc.hit(tree)):
             disc.vx = 0
             disc.vy = 0
 
+    # Draw objects
     DrawHole()
     DrawCircle(basket, Color.GREY)
     DrawCircle(disc, Color.RED)
