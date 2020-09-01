@@ -3,8 +3,9 @@
 import numpy as np
 import pygame
 
+import Color
+
 from Constants import *
-from Color import *
 from Circle import Circle
 from Disc import Disc
 from Wind import Wind
@@ -18,14 +19,13 @@ def DrawCircle(circle, color):
     pygame.draw.ellipse(screen, color, [int(circle.x), int(circle.y), circle.radius, circle.radius])
 
 def DrawWind(wind):
-    DrawCircle(wind, (201, 191, 189))
-    needleColor = (255, 255, 255)
+    DrawCircle(wind, Color.LIGHT_GREY)
     start_pos = (int(wind.x + wind.radius * 0.5),
                  int(wind.y + wind.radius * 0.5))
     end_pos = (int(start_pos[0] + 0.5 * wind.radius * np.cos(wind.heading)),
                int(start_pos[1] + 0.5 * wind.radius * np.sin(wind.heading)))
     width = 5
-    pygame.draw.line(screen, needleColor, start_pos, end_pos, width)
+    pygame.draw.line(screen, Color.BLACK, start_pos, end_pos, width)
     windSpeedText = pygame.font.Font('freesansbold.ttf',16)
     text = ('Wind Speed: ' + str(round(wind.speed,1)))
     TextSurf, TextRect = wind.text_objects(text, windSpeedText)
@@ -33,9 +33,9 @@ def DrawWind(wind):
     screen.blit(TextSurf, TextRect)
 
 def DrawHole():
-    screen.fill(COLOR_ROUGH)
-    pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
-    pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
+    screen.fill(Color.GREEN)
+    pygame.draw.ellipse(screen, Color.LIGHT_GREEN, [340, 100, 120, 400])
+    pygame.draw.rect(screen, Color.LIGHT_GREY, [390, 480, 20, 50])
 
 disc = Disc(395, 500, 10)
 basket = Circle(390, 120, 20)
@@ -83,13 +83,13 @@ while running:
             disc.vy = 0
 
     DrawHole()
-    DrawCircle(basket, (82, 82, 82))
-    DrawCircle(disc, (176, 23, 12))
+    DrawCircle(basket, Color.GREY)
+    DrawCircle(disc, Color.RED)
     DrawWind(wind)
     for tree in trees:
-        DrawCircle(tree, (11, 61, 17))
+        DrawCircle(tree, Color.DARK_GREEN)
     if(mouse_down):
-        pygame.draw.line(screen, (227, 220, 32), mouse_pos, pygame.mouse.get_pos(), width=5)
+        pygame.draw.line(screen, Color.YELLOW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
     pygame.display.update()
     clock.tick(FRAME_RATE)
