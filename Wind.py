@@ -9,9 +9,9 @@ class Wind(Circle):
         self.heading = np.deg2rad(np.random.randint(360))
         self.vx = self.speed * np.cos(self.heading)
         self.vy = self.speed * np.sin(self.heading)
-    def text_objects(self,text, font):
-        textSurface = font.render(text, True, (255, 255, 255))
-        return textSurface, textSurface.get_rect()
+    def text_objects(self, text, font):
+        text_surface = font.render(text, True, (255, 255, 255))
+        return text_surface, text_surface.get_rect()
     vx: float = 0.0
     vy: float = 0.0
     speed: float = 0.0
