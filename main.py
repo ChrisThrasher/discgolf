@@ -46,8 +46,7 @@ basket = Circle(390, 120, 20)
 trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
 wind = Wind(50, 50, 100, max_speed=50)
 
-running = True;
-while running:
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             quit()
@@ -70,11 +69,11 @@ while running:
         disc.update_position(FRAME_PERIOD)
     else:
         print("Completed the hole in", stroke_count, "strokes.")
-        running = False
+        break
 
     if (disc.off_screen(SCREEN_WIDTH, SCREEN_HEIGHT)):
         print("Disc exited the play area.")
-        running = False
+        break
 
     # Obstacle Check
     for tree in trees:
