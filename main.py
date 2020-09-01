@@ -21,8 +21,8 @@ def DrawWind(wind):
                int(start_pos[1] + 0.5 * wind.radius * np.sin(wind.heading)))
     width = 5
     pygame.draw.line(screen, Color.BLACK, start_pos, end_pos, width)
-    windSpeedText = pygame.font.Font('freesansbold.ttf',16)
-    text = ('Wind Speed: ' + str(round(wind.speed,1)))
+    windSpeedText = pygame.font.Font('freesansbold.ttf', 16)
+    text = ('Wind Speed: ' + str(round(wind.speed, 1)))
     TextSurf, TextRect = wind.text_objects(text, windSpeedText)
     TextRect.center = (int(wind.x + wind.radius * 0.5), int(wind.y - 15))
     screen.blit(TextSurf, TextRect)
