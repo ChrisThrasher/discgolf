@@ -44,19 +44,13 @@ def DrawHole():
     pygame.draw.ellipse(screen, COLOR_FAIRWAY, [340, 100, 120, 400])
     pygame.draw.rect(screen, COLOR_TEE, [390, 480, 20, 50])
 
-class Tree(Circle):
-    pass
-
-class Basket(Circle):
-    pass
-
 disc = Disc(395, 500, 10)
-basket = Basket(390, 120, 20)
+basket = Circle(390, 120, 20)
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
 
-trees = [Tree(400, 300, 10), Tree(400, 350, 10), Tree(350, 300, 10)]
+trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
 wind = Wind(50, 50, 100, max_speed=50)
 
 while running:
