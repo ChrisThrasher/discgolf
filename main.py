@@ -54,7 +54,7 @@ while True:
             mouse_down = True
             pygame.mouse.get_rel()
             mouse_pos = pygame.mouse.get_pos()
-        if event.type == pygame.MOUSEBUTTONUP:
+        if event.type == pygame.MOUSEBUTTONUP and mouse_down == True:
             mouse_down = False
             mouse_movement = pygame.mouse.get_rel()
             disc.vx = mouse_movement[0] * 2 + wind.vx
