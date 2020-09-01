@@ -10,11 +10,6 @@ from Circle import Circle
 from Disc import Disc
 from Wind import Wind
 
-pygame.init()
-
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-clock = pygame.time.Clock()
-
 def DrawCircle(circle, color):
     pygame.draw.ellipse(screen, color, [int(circle.x), int(circle.y), circle.radius, circle.radius])
 
@@ -37,14 +32,19 @@ def DrawHole():
     pygame.draw.ellipse(screen, Color.LIGHT_GREEN, [340, 100, 120, 400])
     pygame.draw.rect(screen, Color.LIGHT_GREY, [390, 480, 20, 50])
 
-disc = Disc(395, 500, 10)
-basket = Circle(390, 120, 20)
-trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
-wind = Wind(50, 50, 100, max_speed=50)
+pygame.init()
+
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+clock = pygame.time.Clock()
 
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
+
+disc = Disc(395, 500, 10)
+basket = Circle(390, 120, 20)
+trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
+wind = Wind(50, 50, 100, max_speed=50)
 
 running = True;
 while running:
