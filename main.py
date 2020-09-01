@@ -45,12 +45,12 @@ def DrawHole():
 
 disc = Disc(395, 500, 10)
 basket = Circle(390, 120, 20)
+trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
+wind = Wind(50, 50, 100, max_speed=50)
+
 mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
-
-trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
-wind = Wind(50, 50, 100, max_speed=50)
 
 running = True;
 while running:
