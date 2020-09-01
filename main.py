@@ -54,7 +54,7 @@ while True:
             mouse_down = True
             pygame.mouse.get_rel()
             mouse_pos = pygame.mouse.get_pos()
-        if event.type == pygame.MOUSEBUTTONUP and mouse_down == True:
+        if event.type == pygame.MOUSEBUTTONUP and mouse_down:
             mouse_down = False
             disc.throw(pygame.mouse.get_rel())
             stroke_count = stroke_count + 1
