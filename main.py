@@ -89,6 +89,7 @@ while True:
     if(mouse_down):
         pygame.draw.line(screen, Color.YELLOW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
+    # Finish cycle
     pygame.display.update()
     clock.tick(FRAME_RATE)
 
