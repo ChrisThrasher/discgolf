@@ -1,6 +1,6 @@
 import numpy as np
 
-from Circle import Circle
+from circle import Circle
 
 class Wind(Circle):
     def __init__(self, x, y, radius, max_speed):

@@ -4,23 +4,23 @@ import sys
 import numpy as np
 import pygame
 
-import Color
+import color
 
-from Constants import *
-from Circle import Circle
-from Disc import Disc
-from Wind import Wind
+from constants import *
+from circle import Circle
+from disc import Disc
+from wind import Wind
 
 def DrawCircle(circle, color):
     pygame.draw.ellipse(screen, color, [int(circle.x), int(circle.y), circle.radius, circle.radius])
 
 def DrawWind(wind):
-    DrawCircle(wind, Color.LIGHT_GREY)
+    DrawCircle(wind, color.LIGHT_GREY)
     start_pos = (int(wind.x + wind.radius * 0.5),
                  int(wind.y + wind.radius * 0.5))
     end_pos = (int(start_pos[0] + 0.5 * wind.radius * np.cos(wind.heading)),
                int(start_pos[1] + 0.5 * wind.radius * np.sin(wind.heading)))
-    pygame.draw.line(screen, Color.BLACK, start_pos, end_pos, width=5)
+    pygame.draw.line(screen, color.BLACK, start_pos, end_pos, width=5)
     wind_speed_text = pygame.font.Font('freesansbold.ttf', 16)
     text = ('Wind Speed: ' + str(round(wind.speed, 1)))
     text_surf, text_rect = wind.text_objects(text, wind_speed_text)
@@ -28,9 +28,9 @@ def DrawWind(wind):
     screen.blit(text_surf, text_rect)
 
 def DrawHole():
-    screen.fill(Color.GREEN)
-    pygame.draw.ellipse(screen, Color.LIGHT_GREEN, [340, 100, 120, 400])
-    pygame.draw.rect(screen, Color.LIGHT_GREY, [390, 480, 20, 50])
+    screen.fill(color.GREEN)
+    pygame.draw.ellipse(screen, color.LIGHT_GREEN, [340, 100, 120, 400])
+    pygame.draw.rect(screen, color.LIGHT_GREY, [390, 480, 20, 50])
 
 pygame.init()
 
@@ -81,13 +81,13 @@ while True:
 
     # Draw objects
     DrawHole()
-    DrawCircle(basket, Color.GREY)
-    DrawCircle(disc, Color.RED)
+    DrawCircle(basket, color.GREY)
+    DrawCircle(disc, color.RED)
     DrawWind(wind)
     for tree in trees:
-        DrawCircle(tree, Color.DARK_GREEN)
+        DrawCircle(tree, color.DARK_GREEN)
     if mouse_down:
-        pygame.draw.line(screen, Color.YELLOW, mouse_pos, pygame.mouse.get_pos(), width=5)
+        pygame.draw.line(screen, color.YELLOW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
     # Finish cycle
     pygame.display.update()

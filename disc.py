@@ -1,6 +1,6 @@
 import math
 
-from Circle import Circle
+from circle import Circle
 
 class Disc(Circle):
     def update_position(self, dt):
