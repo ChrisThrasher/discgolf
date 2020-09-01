@@ -1,5 +1,6 @@
 #!/usr/local/bin/python3
 
+import sys
 import numpy as np
 import pygame
 
@@ -49,7 +50,7 @@ wind = Wind(50, 50, 100, max_speed=50)
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            quit()
+            sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
             mouse_down = True
             pygame.mouse.get_rel()
