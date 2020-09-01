@@ -3,18 +3,15 @@
 import numpy as np
 import pygame
 
+from Constants import *
 from Circle import Circle
 from Disc import Disc
 from Wind import Wind
 
 pygame.init()
 
-screen_width = 800
-screen_height = 600
-screen = pygame.display.set_mode((screen_width, screen_height))
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
-frame_rate = 60;
-frame_period = 1.0 / frame_rate;
 
 def DrawCircle(circle, color):
     pygame.draw.ellipse(screen, color, [int(circle.x), int(circle.y), circle.radius, circle.radius])
@@ -70,15 +67,15 @@ while running:
         stroke_count = stroke_count + 1
 
     if (not disc.hit(basket)):
-        disc.update_velocity(frame_period, wind)
+        disc.update_velocity(FRAME_PERIOD, wind)
         if(disc.speed() < 15):
             disc.stop()
-        disc.update_position(frame_period)
+        disc.update_position(FRAME_PERIOD)
     else:
         print("Completed the hole in", stroke_count, "strokes.")
         running = False
 
-    if (disc.off_screen(screen_width, screen_height)):
+    if (disc.off_screen(SCREEN_WIDTH, SCREEN_HEIGHT)):
         print("Disc exited the play area.")
         running = False
 
@@ -98,6 +95,6 @@ while running:
         pygame.draw.line(screen, (227, 220, 32), mouse_pos, pygame.mouse.get_pos(), width=5)
 
     pygame.display.update()
-    clock.tick(frame_rate)
+    clock.tick(FRAME_RATE)
 
 pygame.quit()
