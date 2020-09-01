@@ -8,7 +8,6 @@ from Disc import Disc
 from Wind import Wind
 
 pygame.init()
-running = True;
 
 screen_width = 800
 screen_height = 600
@@ -53,6 +52,7 @@ stroke_count = 0
 trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
 wind = Wind(50, 50, 100, max_speed=50)
 
+running = True;
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
