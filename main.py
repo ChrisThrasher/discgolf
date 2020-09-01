@@ -50,17 +50,16 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             quit()
-
-    if(pygame.mouse.get_pressed()[0] and mouse_down == False and disc.speed() == 0):
-        mouse_down = True
-        pygame.mouse.get_rel()
-        mouse_pos = pygame.mouse.get_pos()
-    elif(not pygame.mouse.get_pressed()[0] and mouse_down == True):
-        mouse_down = False
-        mouse_movement = pygame.mouse.get_rel()
-        disc.vx = mouse_movement[0] * 2 + wind.vx
-        disc.vy = mouse_movement[1] * 2 + wind.vy
-        stroke_count = stroke_count + 1
+        if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
+            mouse_down = True
+            pygame.mouse.get_rel()
+            mouse_pos = pygame.mouse.get_pos()
+        if event.type == pygame.MOUSEBUTTONUP:
+            mouse_down = False
+            mouse_movement = pygame.mouse.get_rel()
+            disc.vx = mouse_movement[0] * 2 + wind.vx
+            disc.vy = mouse_movement[1] * 2 + wind.vy
+            stroke_count = stroke_count + 1
 
     if (not disc.hit(basket)):
         disc.update_velocity(FRAME_PERIOD, wind)
