@@ -3,6 +3,10 @@ import math
 from circle import Circle
 
 class Disc(Circle):
+    def __init__(self,x, y, radius, color,resistance_coef):
+        super().__init__(x,y,radius)
+        self.color = color
+        self.resistance_coef = resistance_coef
     def update_position(self, dt):
         self.x = dt * self.vx + self.x
         self.y = dt * self.vy + self.y
