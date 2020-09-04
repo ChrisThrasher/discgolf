@@ -14,10 +14,12 @@ To install PyGame in macOS 10.15:
 
 - [x] Wind resistance
 
-- [ ] Multiple types of discs
+- [x] Multiple types of discs
 
 - [ ] 9-hole course
 
 - [ ] Curved disc paths
 
 - [x] Wind (speed and direction visualized)
+
+- [] Max length of throw line and color visualization of magnitude
