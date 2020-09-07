@@ -111,8 +111,7 @@ while True:
     # Detect obstacle collisions
     for tree in trees:
         if disc.hit(tree):
-            disc.vx = 0
-            disc.vy = 0
+            disc.vel = Vec2(0.0, 0.0)
 
     # Draw objects
     DrawHole()
