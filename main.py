@@ -19,19 +19,6 @@ def DrawHole():
     pygame.draw.ellipse(screen, color.LIGHT_GREEN, [340, 100, 120, 400])
     pygame.draw.rect(screen, color.LIGHT_GREY, [390, 480, 20, 50])
 
-def DrawBag(discSlot, hoverCheck):
-    if hoverCheck == True:
-        pygame.draw.circle(screen,
-                           color.LIGHT_GREY,
-                           [int(discSlot.pos.x + 0.5 * discSlot.r), int(discSlot.pos.y + 0.5 * discSlot.r)],
-                           int((discSlot.r + 10) * 0.5),
-                           width=0)
-    discSlot.draw(discSlot.color)
-    textSurface = pygame.font.Font('freesansbold.ttf', 12).render(discSlot.name, True, color.WHITE)
-    textRect = textSurface.get_rect()
-    textRect.center = (int(discSlot.pos.x + discSlot.r * 0.5), int(discSlot.pos.y - 15))
-    screen.blit(textSurface, textRect)
-
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -107,9 +94,9 @@ while True:
     # Change Color of Bag Display if Hovering over an Option
     for discs in BAG:
         if (discs.center - mouse).norm() <= discs.r:
-            DrawBag(discs, hoverCheck=True)
+            discs.draw(hoverCheck=True)
         else:
-            DrawBag(discs, hoverCheck=False)
+            discs.draw(hoverCheck=False)
 
     # Finish cycle
     pygame.display.update()
