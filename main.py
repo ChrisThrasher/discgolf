@@ -32,17 +32,20 @@ def DrawHole():
     screen.fill(color.GREEN)
     pygame.draw.ellipse(screen, color.LIGHT_GREEN, [340, 100, 120, 400])
     pygame.draw.rect(screen, color.LIGHT_GREY, [390, 480, 20, 50])
-        
-def DrawBag(discSlot,hoverCheck):
+
+def DrawBag(discSlot, hoverCheck):
     if hoverCheck == True:
-        pygame.draw.circle(screen, (100,200,200),[int(discSlot.x + 0.5 * discSlot.r), 
-                       int(discSlot.y + 0.5 * discSlot.r)], (discSlot.r + 10) * 0.5, width=0)
-    DrawCircle(discSlot,discSlot.color)
-    discTypeText = pygame.font.Font('freesansbold.ttf',12)
+        pygame.draw.circle(screen,
+                           (100, 200, 200),
+                           [int(discSlot.x + 0.5 * discSlot.r), int(discSlot.y + 0.5 * discSlot.r)],
+                           (discSlot.r + 10) * 0.5,
+                           width=0)
+    DrawCircle(discSlot, discSlot.color)
+    discTypeText = pygame.font.Font('freesansbold.ttf', 12)
     TextSurf, TextRect = discSlot.text_objects(discSlot.discType, discTypeText)
     TextRect.center = (int(discSlot.x + discSlot.r * 0.5), int(discSlot.y - 15))
     screen.blit(TextSurf, TextRect)
-    
+
 pygame.init()
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -55,26 +58,26 @@ stroke_count = 0
 basket = Circle(390, 120, 20)
 trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
 wind = Wind(50, 50, 100, max_speed=50)
-bag   = [BagSlot(750,50,40,color=(255,255,255),discType='Driver'),
-         BagSlot(700,50,40,color=(0, 0, 255),discType='Mid Range'),
-         BagSlot(650,50,40,color=(255, 102, 0),discType='Putter')]
-disc  = Disc(395, 500, 10,color=bag[0].color,resistance_coef=bag[0].resistance_coef)
+bag = [BagSlot(750, 50, 40, color=(255, 255, 255), discType='Driver'),
+       BagSlot(700, 50, 40, color=(0, 0, 255), discType='Mid Range'),
+       BagSlot(650, 50, 40, color=(255, 102, 0), discType='Putter')]
+disc = Disc(395, 500, 10, color=bag[0].color, resistance_coef=bag[0].resistance_coef)
 validSpace = True
 
 while True:
     # Track Mouse Position at all Times
-    mouse = pygame.mouse.get_pos() 
-    
+    mouse = pygame.mouse.get_pos()
+
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Change Disc Logic
             for discs in bag:
-                if(pow(discs.xc - mouse[0], 2) + pow(discs.yc - mouse[1], 2) <= pow(discs.r,2)):
+                if pow(discs.xc - mouse[0], 2) + pow(discs.yc - mouse[1], 2) <= pow(discs.r, 2):
                     disc.color = discs.color
-                    disc.resistance_coef = discs.resistance_coef                    
+                    disc.resistance_coef = discs.resistance_coef
             # Space Not Valid when Choosing Discs
         for discs in bag:
-            if(pow(discs.xc - mouse[0], 2) + pow(discs.yc - mouse[1], 2) <= pow(discs.r,2)):
+            if pow(discs.xc - mouse[0], 2) + pow(discs.yc - mouse[1], 2) <= pow(discs.r, 2):
                 validSpace = False
                 break
         if event.type == pygame.QUIT:
@@ -115,14 +118,14 @@ while True:
     DrawCircle(basket, color.GREY)
     DrawCircle(disc, disc.color)
     DrawWind(wind)
-    
+
     # Change Color of Bag Display if Hovering over an Option
     for discs in bag:
-        if(pow(discs.xc - mouse[0], 2) + pow(discs.yc - mouse[1], 2) <= pow(discs.r,2)):
-            DrawBag(discs,hoverCheck=True)
-        else: 
-            DrawBag(discs,hoverCheck=False)
-    
+        if pow(discs.xc - mouse[0], 2) + pow(discs.yc - mouse[1], 2) <= pow(discs.r, 2):
+            DrawBag(discs, hoverCheck=True)
+        else:
+            DrawBag(discs, hoverCheck=False)
+
     for tree in trees:
         DrawCircle(tree, color.DARK_GREEN)
     if mouse_down:
