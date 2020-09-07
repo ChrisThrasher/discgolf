@@ -7,6 +7,8 @@ class Vec2:
     @classmethod
     def from_tuple(cls, tuple):
         return cls(tuple[0], tuple[1])
+    def as_tuple(self):
+        return [self.x, self.y]
     def __add__(self, rhs):
         return Vec2(self.x + rhs.x, self.y + rhs.y)
     def __sub__(self, rhs):

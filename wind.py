@@ -18,11 +18,9 @@ class Wind(Circle):
         return text_surface, text_surface.get_rect()
     def draw(self):
         super().draw(color.LIGHT_GREY)
-        start_pos = (int(self.pos.x + self.radius * 0.5),
-                     int(self.pos.y + self.radius * 0.5))
-        end_pos = (int(start_pos[0] + 0.5 * self.radius * np.cos(self.heading)),
-                   int(start_pos[1] + 0.5 * self.radius * np.sin(self.heading)))
-        pygame.draw.line(screen, color.WHITE, start_pos, end_pos, width=5)
+        start_pos = self.center()
+        end_pos = self.center() + Vec2(np.cos(self.heading), np.sin(self.heading)) * self.radius * 0.5
+        pygame.draw.line(screen, color.WHITE, start_pos.as_tuple(), end_pos.as_tuple(), width=5)
         wind_speed_text = pygame.font.Font('freesansbold.ttf', 16)
         text = ('Wind Speed: ' + str(round(self.speed, 1)))
         text_surf, text_rect = self.text_objects(text, wind_speed_text)
