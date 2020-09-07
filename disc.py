@@ -17,8 +17,7 @@ class Disc(Circle):
             self.stop()
             return
         self.height = self.height - 0.005
-        resistance_coef = 0.015
-        resistive_accel = resistance_coef * self.relative_speed2(wind)
+        resistive_accel = self.resistance_coef * self.relative_speed2(wind)
         self.vel.x = self.vel.x - resistive_accel * math.cos(self.relative_heading(wind)) * dt
         self.vel.y = self.vel.y - resistive_accel * math.sin(self.relative_heading(wind)) * dt
     def throw(self, mouse_movement):
