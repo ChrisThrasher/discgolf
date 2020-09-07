@@ -8,8 +8,8 @@ class Disc(Circle):
         self.color = color
         self.resistance_coef = resistance_coef
     def update_position(self, dt):
-        self.x = dt * self.vx + self.x
-        self.y = dt * self.vy + self.y
+        self.pos.x = dt * self.vx + self.pos.x
+        self.pos.y = dt * self.vy + self.pos.y
     def update_velocity(self, dt, wind):
         if (self.height < 0 or self.speed() == 0):
             self.stop()
@@ -24,9 +24,7 @@ class Disc(Circle):
         self.vx = throw_gain * mouse_movement[0]
         self.vy = throw_gain * mouse_movement[1]
     def hit(self, obs):
-        if pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2):
-            return True
-        return False
+        return pow(obs.pos.x - self.pos.x, 2) + pow(obs.pos.y - self.pos.y, 2) <= pow((self.radius + obs.radius) / 2, 2)
     def speed(self):
         return math.sqrt(pow(self.vx, 2) + pow(self.vy, 2))
     def relative_speed2(self, wind):
@@ -34,7 +32,7 @@ class Disc(Circle):
     def relative_heading(self, wind):
         return math.atan2(self.vy - wind.vy, self.vx - wind.vx)
     def off_screen(self, width, height):
-        return self.x < 0 or self.x > width or self.y < 0 or self.y > height
+        return self.pos.x < 0 or self.pos.x > width or self.pos.y < 0 or self.pos.y > height
     def stop(self):
         self.vx = 0
         self.vy = 0
