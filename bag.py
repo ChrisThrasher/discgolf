@@ -17,7 +17,7 @@ class BagSlot(Circle):
             pygame.draw.circle(screen,
                                color.LIGHT_GREY,
                                [int(self.center().x), int(self.center().y)],
-                               int((self.radius + 10) * 0.5),
+                               int(self.radius + 5),
                                width=0)
         super().draw(self.color)
         textSurface = pygame.font.Font('freesansbold.ttf', 12).render(self.name, True, color.WHITE)
