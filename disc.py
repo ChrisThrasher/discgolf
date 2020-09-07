@@ -23,7 +23,7 @@ class Disc(Circle):
     def throw(self, mouse_movement):
         self.vel = Vec2(mouse_movement[0], mouse_movement[1]) * 2.0
     def hit(self, obs):
-        return (self.pos - obs.pos).norm() <= (self.radius + obs.radius) / 2
+        return (self.center() - obs.center()).norm() <= (self.radius + obs.radius)
     def speed(self):
         return self.vel.norm()
     def relative_speed2(self, wind):
