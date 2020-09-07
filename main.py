@@ -53,7 +53,6 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
 mouse_down = False
-mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
 
 basket = Circle(Vec2(390, 120), 20)
@@ -84,7 +83,7 @@ while True:
             if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
                 mouse_down = True
                 pygame.mouse.get_rel()
-                mouse_pos = pygame.mouse.get_pos()
+                click_start = pygame.mouse.get_pos()
             if event.type == pygame.MOUSEBUTTONUP and mouse_down:
                 mouse_down = False
                 disc.throw(pygame.mouse.get_rel())
@@ -119,7 +118,7 @@ while True:
     for tree in trees:
         DrawCircle(tree, color.DARK_GREEN)
     if mouse_down:
-        pygame.draw.line(screen, color.YELLOW, mouse_pos, pygame.mouse.get_pos(), width=5)
+        pygame.draw.line(screen, color.YELLOW, click_start, pygame.mouse.get_pos(), width=5)
 
     # Change Color of Bag Display if Hovering over an Option
     for discs in BAG:
