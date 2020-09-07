@@ -8,8 +8,8 @@ from circle import Circle
 from vec2 import Vec2
 
 class Wind(Circle):
-    def __init__(self, x, y, radius, max_speed):
-        super().__init__(Vec2(x, y), radius)
+    def __init__(self, pos, radius, max_speed):
+        super().__init__(pos, radius)
         self.speed = np.random.rand() * max_speed
         self.heading = np.deg2rad(np.random.randint(360))
         self.vel = Vec2(np.cos(self.heading), np.sin(self.heading)) * self.speed
