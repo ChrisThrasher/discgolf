@@ -4,7 +4,6 @@ from circle import Circle
 from constants import *
 
 class BagSlot(Circle):
-
     def __init__(self, x, y, radius, color, discType):
         super().__init__(x, y, radius)
         self.x = x
