@@ -9,7 +9,6 @@ from vec2 import Vec2
 class BagSlot(Circle):
     def __init__(self, pos, radius, name, color, resistance_coef):
         super().__init__(pos, radius)
-        self.pos = pos
         self.color = color
         self.center = Vec2(int(pos.x + 0.5 * radius), int(pos.y + 0.5 * radius))
         self.name = name
