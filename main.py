@@ -62,7 +62,7 @@ wind = Wind(50, 50, 100, max_speed=50)
 bag = [BagSlot(750, 50, 40, color.WHITE, discType='Driver'),
        BagSlot(700, 50, 40, color.BLUE, discType='Mid Range'),
        BagSlot(650, 50, 40, color.ORANGE, discType='Putter')]
-disc = Disc(395, 500, 10, color=bag[0].color, resistance_coef=bag[0].resistance_coef)
+disc = Disc(Vec2(395, 500), 10, color=bag[0].color, resistance_coef=bag[0].resistance_coef)
 validSpace = True
 
 while True:

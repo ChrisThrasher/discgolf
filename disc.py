@@ -1,11 +1,10 @@
 import math
 
 from circle import Circle
-from vec2 import Vec2
 
 class Disc(Circle):
-    def __init__(self, x, y, radius, color, resistance_coef):
-        super().__init__(Vec2(x, y), radius)
+    def __init__(self, pos, radius, color, resistance_coef):
+        super().__init__(pos, radius)
         self.color = color
         self.resistance_coef = resistance_coef
     def update_position(self, dt):
