@@ -18,10 +18,10 @@ class BagSlot(Circle):
     def draw(self, hoverCheck):
         if hoverCheck == True:
             pygame.draw.circle(screen,
-                              color.LIGHT_GREY,
-                              [int(self.pos.x + 0.5 * self.r), int(self.pos.y + 0.5 * self.r)],
-                              int((self.r + 10) * 0.5),
-                              width=0)
+                               color.LIGHT_GREY,
+                               [int(self.pos.x + 0.5 * self.r), int(self.pos.y + 0.5 * self.r)],
+                               int((self.r + 10) * 0.5),
+                               width=0)
         super().draw(self.color)
         textSurface = pygame.font.Font('freesansbold.ttf', 12).render(self.name, True, color.WHITE)
         textRect = textSurface.get_rect()
