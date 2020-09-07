@@ -38,14 +38,14 @@ while True:
 
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
-            # Change Disc Logic
-            for discs in BAG:
-                if (discs.center - mouse).norm() <= discs.r and disc.speed() == 0.0:
-                    disc.color = discs.color
-                    disc.resistance_coef = discs.resistance_coef
-            # Space Not Valid when Choosing Discs
-        for discs in BAG:
-            if (discs.center - mouse).norm() <= discs.r:
+            # Change disc parameters
+            for slot in BAG:
+                if (slot.center - mouse).norm() <= slot.r and disc.speed() == 0.0:
+                    disc.color = slot.color
+                    disc.resistance_coef = slot.resistance_coef
+            # Space not valid when choosing discs
+        for slot in BAG:
+            if (slot.center - mouse).norm() <= slot.r:
                 validSpace = False
                 break
         if event.type == pygame.QUIT:
@@ -91,12 +91,12 @@ while True:
     if mouse_down:
         pygame.draw.line(screen, color.YELLOW, click_start, pygame.mouse.get_pos(), width=5)
 
-    # Change Color of Bag Display if Hovering over an Option
-    for discs in BAG:
-        if (discs.center - mouse).norm() <= discs.r:
-            discs.draw(hoverCheck=True)
+    # Change color of bag slot if hovering over an option
+    for slot in BAG:
+        if (slot.center - mouse).norm() <= slot.r:
+            slot.draw(hoverCheck=True)
         else:
-            discs.draw(hoverCheck=False)
+            slot.draw(hoverCheck=False)
 
     # Finish cycle
     pygame.display.update()
