@@ -10,4 +10,4 @@ class Circle:
     def center(self):
         return self.pos + Vec2(self.radius / 2, self.radius / 2)
     def draw(self, color):
-        pygame.draw.ellipse(screen, color, [int(self.pos.x), int(self.pos.y), self.radius, self.radius])
+        pygame.draw.circle(screen, color, [int(self.center().x), int(self.center().y)], self.radius / 2)
