@@ -6,6 +6,7 @@ import pygame
 
 import color
 
+from screen import screen
 from constants import *
 from circle import Circle
 from disc import Disc
@@ -49,7 +50,6 @@ def DrawBag(discSlot, hoverCheck):
 
 pygame.init()
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
 mouse_down = False
