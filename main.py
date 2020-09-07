@@ -58,7 +58,7 @@ stroke_count = 0
 basket = Circle(390, 120, 20)
 trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
 wind = Wind(50, 50, 100, max_speed=50)
-bag = [BagSlot(750, 50, 40, color=(255, 255, 255), discType='Driver'),
+bag = [BagSlot(750, 50, 40, color=color.WHITE, discType='Driver'),
        BagSlot(700, 50, 40, color=(0, 0, 255), discType='Mid Range'),
        BagSlot(650, 50, 40, color=(255, 102, 0), discType='Putter')]
 disc = Disc(395, 500, 10, color=bag[0].color, resistance_coef=bag[0].resistance_coef)
