@@ -10,7 +10,6 @@ class BagSlot(Circle):
     def __init__(self, pos, radius, name, color, resistance_coef):
         super().__init__(pos, radius)
         self.color = color
-        self.center = Vec2(int(pos.x + 0.5 * radius), int(pos.y + 0.5 * radius))
         self.name = name
         self.resistance_coef = resistance_coef
     def draw(self, hoverCheck):
