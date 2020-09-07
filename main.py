@@ -10,7 +10,7 @@ from constants import *
 from circle import Circle
 from disc import Disc
 from wind import Wind
-from bag import DRIVER, MID_RANGE, PUTTER
+from bag import BAG
 from vec2 import Vec2
 
 def DrawCircle(circle, color):
@@ -59,8 +59,7 @@ stroke_count = 0
 basket = Circle(Vec2(390, 120), 20)
 trees = [Circle(Vec2(400, 300), 10), Circle(Vec2(400, 350), 10), Circle(Vec2(350, 300), 10)]
 wind = Wind(50, 50, 100, max_speed=50)
-bag = [DRIVER, MID_RANGE, PUTTER]
-disc = Disc(Vec2(395, 500), 10, color=bag[0].color, resistance_coef=bag[0].resistance_coef)
+disc = Disc(Vec2(395, 500), 10, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
 validSpace = True
 
 while True:
@@ -70,12 +69,12 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Change Disc Logic
-            for discs in bag:
+            for discs in BAG:
                 if pow(discs.center.x - mouse[0], 2) + pow(discs.center.y - mouse[1], 2) <= pow(discs.r, 2) and disc.speed() == 0.0:
                     disc.color = discs.color
                     disc.resistance_coef = discs.resistance_coef
             # Space Not Valid when Choosing Discs
-        for discs in bag:
+        for discs in BAG:
             if pow(discs.center.x - mouse[0], 2) + pow(discs.center.y - mouse[1], 2) <= pow(discs.r, 2):
                 validSpace = False
                 break
@@ -123,7 +122,7 @@ while True:
         pygame.draw.line(screen, color.YELLOW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
     # Change Color of Bag Display if Hovering over an Option
-    for discs in bag:
+    for discs in BAG:
         if pow(discs.center.x - mouse[0], 2) + pow(discs.center.y - mouse[1], 2) <= pow(discs.r, 2):
             DrawBag(discs, hoverCheck=True)
         else:
