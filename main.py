@@ -83,7 +83,6 @@ while True:
     # Draw objects
     DrawHole()
     basket.draw(color.GREY)
-    disc.draw()
     wind.draw()
 
     for tree in trees:
@@ -97,6 +96,8 @@ while True:
             slot.draw(hoverCheck=True)
         else:
             slot.draw(hoverCheck=False)
+
+    disc.draw()
 
     # Finish cycle
     pygame.display.update()
