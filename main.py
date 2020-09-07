@@ -36,7 +36,7 @@ def DrawHole():
 def DrawBag(discSlot, hoverCheck):
     if hoverCheck == True:
         pygame.draw.circle(screen,
-                           (100, 200, 200),
+                           color.LIGHT_GREY,
                            [int(discSlot.x + 0.5 * discSlot.r), int(discSlot.y + 0.5 * discSlot.r)],
                            (discSlot.r + 10) * 0.5,
                            width=0)
