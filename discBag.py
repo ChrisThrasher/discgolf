@@ -18,7 +18,3 @@ class BagSlot(Circle):
             self.resistance_coef = 0.015
         elif discType == 'Putter':
             self.resistance_coef = 0.02
-    r: int
-    color: tuple
-    resistance_coef: float
-    discType: str
