@@ -25,8 +25,8 @@ class BagSlot(Circle):
         textRect.center = (int(self.center().x), int(self.pos.y - 15))
         screen.blit(textSurface, textRect)
 
-DRIVER = BagSlot(Vec2(750, 50), 40, 'Driver', color.WHITE, 0.01)
-MID_RANGE = BagSlot(Vec2(700, 50), 40, 'Mid Range', color.BLUE, 0.015)
-PUTTER = BagSlot(Vec2(650, 50), 40, 'Putter', color.ORANGE, 0.02)
+DRIVER = BagSlot(Vec2(750, 50), 20, 'Driver', color.WHITE, 0.01)
+MID_RANGE = BagSlot(Vec2(700, 50), 20, 'Mid Range', color.BLUE, 0.015)
+PUTTER = BagSlot(Vec2(650, 50), 20, 'Putter', color.ORANGE, 0.02)
 
 BAG = [DRIVER, MID_RANGE, PUTTER]
