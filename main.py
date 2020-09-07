@@ -10,7 +10,7 @@ from constants import *
 from circle import Circle
 from disc import Disc
 from wind import Wind
-from discBag import BagSlot
+from bag import BagSlot
 from vec2 import Vec2
 
 def DrawCircle(circle, color):
