@@ -10,7 +10,7 @@ from constants import *
 from circle import Circle
 from disc import Disc
 from wind import Wind
-from bag import BagSlot
+from bag import DRIVER, MID_RANGE, PUTTER
 from vec2 import Vec2
 
 def DrawCircle(circle, color):
@@ -42,7 +42,7 @@ def DrawBag(discSlot, hoverCheck):
                            int((discSlot.r + 10) * 0.5),
                            width=0)
     DrawCircle(discSlot, discSlot.color)
-    textSurface = pygame.font.Font('freesansbold.ttf', 12).render(discSlot.discType, True, color.WHITE)
+    textSurface = pygame.font.Font('freesansbold.ttf', 12).render(discSlot.name, True, color.WHITE)
     textRect = textSurface.get_rect()
     textRect.center = (int(discSlot.pos.x + discSlot.r * 0.5), int(discSlot.pos.y - 15))
     screen.blit(textSurface, textRect)
@@ -59,9 +59,7 @@ stroke_count = 0
 basket = Circle(Vec2(390, 120), 20)
 trees = [Circle(Vec2(400, 300), 10), Circle(Vec2(400, 350), 10), Circle(Vec2(350, 300), 10)]
 wind = Wind(50, 50, 100, max_speed=50)
-bag = [BagSlot(Vec2(750, 50), 40, color.WHITE, discType='Driver'),
-       BagSlot(Vec2(700, 50), 40, color.BLUE, discType='Mid Range'),
-       BagSlot(Vec2(650, 50), 40, color.ORANGE, discType='Putter')]
+bag = [DRIVER, MID_RANGE, PUTTER]
 disc = Disc(Vec2(395, 500), 10, color=bag[0].color, resistance_coef=bag[0].resistance_coef)
 validSpace = True
 
