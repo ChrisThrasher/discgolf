@@ -119,17 +119,17 @@ while True:
     DrawCircle(disc, disc.color)
     DrawWind(wind)
 
+    for tree in trees:
+        DrawCircle(tree, color.DARK_GREEN)
+    if mouse_down:
+        pygame.draw.line(screen, color.YELLOW, mouse_pos, pygame.mouse.get_pos(), width=5)
+
     # Change Color of Bag Display if Hovering over an Option
     for discs in bag:
         if pow(discs.xc - mouse[0], 2) + pow(discs.yc - mouse[1], 2) <= pow(discs.r, 2):
             DrawBag(discs, hoverCheck=True)
         else:
             DrawBag(discs, hoverCheck=False)
-
-    for tree in trees:
-        DrawCircle(tree, color.DARK_GREEN)
-    if mouse_down:
-        pygame.draw.line(screen, color.YELLOW, mouse_pos, pygame.mouse.get_pos(), width=5)
 
     # Finish cycle
     pygame.display.update()
