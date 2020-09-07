@@ -2,6 +2,7 @@ import color
 
 from circle import Circle
 from constants import *
+from vec2 import Vec2
 
 class BagSlot(Circle):
     def __init__(self, pos, radius, color, discType):
@@ -9,8 +10,7 @@ class BagSlot(Circle):
         self.pos = pos
         self.r = radius
         self.color = color
-        self.xc = int(pos.x + 0.5 * radius)
-        self.yc = int(pos.y + 0.5 * radius)
+        self.center = Vec2(int(pos.x + 0.5 * radius), int(pos.y + 0.5 * radius))
         self.discType = discType
         if discType == 'Driver':
             self.resistance_coef = 0.01
@@ -24,6 +24,4 @@ class BagSlot(Circle):
     r: int
     color: tuple
     resistance_coef: float
-    xc: int
-    yc: int
     discType: str
