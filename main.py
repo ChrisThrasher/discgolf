@@ -64,18 +64,18 @@ validSpace = True
 
 while True:
     # Track Mouse Position at all Times
-    mouse = pygame.mouse.get_pos()
+    mouse = Vec2.from_tuple(pygame.mouse.get_pos())
 
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Change Disc Logic
             for discs in BAG:
-                if pow(discs.center.x - mouse[0], 2) + pow(discs.center.y - mouse[1], 2) <= pow(discs.r, 2) and disc.speed() == 0.0:
+                if (discs.center - mouse).norm2() <= pow(discs.r, 2) and disc.speed() == 0.0:
                     disc.color = discs.color
                     disc.resistance_coef = discs.resistance_coef
             # Space Not Valid when Choosing Discs
         for discs in BAG:
-            if pow(discs.center.x - mouse[0], 2) + pow(discs.center.y - mouse[1], 2) <= pow(discs.r, 2):
+            if (discs.center - mouse).norm2() <= pow(discs.r, 2):
                 validSpace = False
                 break
         if event.type == pygame.QUIT:
@@ -123,7 +123,7 @@ while True:
 
     # Change Color of Bag Display if Hovering over an Option
     for discs in BAG:
-        if pow(discs.center.x - mouse[0], 2) + pow(discs.center.y - mouse[1], 2) <= pow(discs.r, 2):
+        if (discs.center - mouse).norm2() <= pow(discs.r, 2):
             DrawBag(discs, hoverCheck=True)
         else:
             DrawBag(discs, hoverCheck=False)
