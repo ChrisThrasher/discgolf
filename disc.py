@@ -9,6 +9,7 @@ class Disc(Circle):
         self.vel = Vec2(0.0, 0.0)
         self.color = color
         self.resistance_coef = resistance_coef
+        self.height = 1.0
     def update_position(self, dt):
         self.pos = self.vel * dt + self.pos
     def update_velocity(self, dt, wind):
@@ -36,4 +37,3 @@ class Disc(Circle):
     def stop(self):
         self.vel = Vec2(0.0, 0.0)
         self.height = 1.0
-    height: float = 1.0
