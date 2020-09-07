@@ -16,7 +16,7 @@ class BagSlot(Circle):
         if hoverCheck == True:
             pygame.draw.circle(screen,
                                color.LIGHT_GREY,
-                               [int(self.pos.x + 0.5 * self.radius), int(self.pos.y + 0.5 * self.radius)],
+                               [int(self.center.x), int(self.center.y)],
                                int((self.radius + 10) * 0.5),
                                width=0)
         super().draw(self.color)
