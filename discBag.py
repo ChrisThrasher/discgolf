@@ -2,10 +2,11 @@ import color
 
 from circle import Circle
 from constants import *
+from vec2 import Vec2
 
 class BagSlot(Circle):
     def __init__(self, x, y, radius, color, discType):
-        super().__init__(x, y, radius)
+        super().__init__(Vec2(x, y), radius)
         self.x = x
         self.y = y
         self.r = radius

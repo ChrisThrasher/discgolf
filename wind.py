@@ -3,10 +3,11 @@ import numpy as np
 import color
 
 from circle import Circle
+from vec2 import Vec2
 
 class Wind(Circle):
     def __init__(self, x, y, radius, max_speed):
-        super().__init__(x, y, radius)
+        super().__init__(Vec2(x, y), radius)
         self.speed = np.random.rand() * max_speed
         self.heading = np.deg2rad(np.random.randint(360))
         self.vx = self.speed * np.cos(self.heading)

@@ -11,6 +11,7 @@ from circle import Circle
 from disc import Disc
 from wind import Wind
 from discBag import BagSlot
+from vec2 import Vec2
 
 def DrawCircle(circle, color):
     pygame.draw.ellipse(screen, color, [int(circle.pos.x), int(circle.pos.y), circle.radius, circle.radius])
@@ -55,8 +56,8 @@ mouse_down = False
 mouse_pos = pygame.mouse.get_pos()
 stroke_count = 0
 
-basket = Circle(390, 120, 20)
-trees = [Circle(400, 300, 10), Circle(400, 350, 10), Circle(350, 300, 10)]
+basket = Circle(Vec2(390, 120), 20)
+trees = [Circle(Vec2(400, 300), 10), Circle(Vec2(400, 350), 10), Circle(Vec2(350, 300), 10)]
 wind = Wind(50, 50, 100, max_speed=50)
 bag = [BagSlot(750, 50, 40, color.WHITE, discType='Driver'),
        BagSlot(700, 50, 40, color.BLUE, discType='Mid Range'),
