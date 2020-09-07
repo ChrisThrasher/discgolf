@@ -42,10 +42,10 @@ def DrawBag(discSlot, hoverCheck):
                            int((discSlot.r + 10) * 0.5),
                            width=0)
     DrawCircle(discSlot, discSlot.color)
-    discTypeText = pygame.font.Font('freesansbold.ttf', 12)
-    TextSurf, TextRect = discSlot.text_objects(discSlot.discType, discTypeText)
-    TextRect.center = (int(discSlot.pos.x + discSlot.r * 0.5), int(discSlot.pos.y - 15))
-    screen.blit(TextSurf, TextRect)
+    textSurface = pygame.font.Font('freesansbold.ttf', 12).render(discSlot.discType, True, color.WHITE)
+    textRect = textSurface.get_rect()
+    textRect.center = (int(discSlot.pos.x + discSlot.r * 0.5), int(discSlot.pos.y - 15))
+    screen.blit(textSurface, textRect)
 
 pygame.init()
 
