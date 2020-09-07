@@ -1,5 +1,7 @@
 import numpy as np
 
+import color
+
 from circle import Circle
 
 class Wind(Circle):
@@ -10,7 +12,7 @@ class Wind(Circle):
         self.vx = self.speed * np.cos(self.heading)
         self.vy = self.speed * np.sin(self.heading)
     def text_objects(self, text, font):
-        text_surface = font.render(text, True, (255, 255, 255))
+        text_surface = font.render(text, True, color.WHITE)
         return text_surface, text_surface.get_rect()
     vx: float = 0.0
     vy: float = 0.0
