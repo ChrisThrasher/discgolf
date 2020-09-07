@@ -16,13 +16,13 @@ class BagSlot(Circle):
         if hoverCheck == True:
             pygame.draw.circle(screen,
                                color.LIGHT_GREY,
-                               [int(self.center.x), int(self.center.y)],
+                               [int(self.center().x), int(self.center().y)],
                                int((self.radius + 10) * 0.5),
                                width=0)
         super().draw(self.color)
         textSurface = pygame.font.Font('freesansbold.ttf', 12).render(self.name, True, color.WHITE)
         textRect = textSurface.get_rect()
-        textRect.center = (int(self.center.x), int(self.pos.y - 15))
+        textRect.center = (int(self.center().x), int(self.pos.y - 15))
         screen.blit(textSurface, textRect)
 
 DRIVER = BagSlot(Vec2(750, 50), 40, 'Driver', color.WHITE, 0.01)

@@ -7,6 +7,7 @@ class Circle:
     def __init__(self, pos, radius):
         self.pos = pos
         self.radius = radius
-        self.center = pos + Vec2(radius / 2, radius / 2)
+    def center(self):
+        return self.pos + Vec2(self.radius / 2, self.radius / 2)
     def draw(self, color):
         pygame.draw.ellipse(screen, color, [int(self.pos.x), int(self.pos.y), self.radius, self.radius])
