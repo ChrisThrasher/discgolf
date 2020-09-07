@@ -3,8 +3,8 @@ import math
 from circle import Circle
 
 class Disc(Circle):
-    def __init__(self,x, y, radius, color,resistance_coef):
-        super().__init__(x,y,radius)
+    def __init__(self, x, y, radius, color, resistance_coef):
+        super().__init__(x, y, radius)
         self.color = color
         self.resistance_coef = resistance_coef
     def update_position(self, dt):
@@ -24,7 +24,7 @@ class Disc(Circle):
         self.vx = throw_gain * mouse_movement[0]
         self.vy = throw_gain * mouse_movement[1]
     def hit(self, obs):
-        if(pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2)):
+        if pow(obs.x - self.x, 2) + pow(obs.y - self.y, 2) <= pow((self.radius + obs.radius) / 2, 2):
             return True
         return False
     def speed(self):
