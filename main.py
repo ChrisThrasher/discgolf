@@ -14,11 +14,8 @@ from wind import Wind
 from bag import BAG
 from vec2 import Vec2
 
-def DrawCircle(circle, color):
-    pygame.draw.ellipse(screen, color, [int(circle.pos.x), int(circle.pos.y), circle.radius, circle.radius])
-
 def DrawWind(wind):
-    DrawCircle(wind, color.LIGHT_GREY)
+    wind.draw(color.LIGHT_GREY)
     start_pos = (int(wind.pos.x + wind.radius * 0.5),
                  int(wind.pos.y + wind.radius * 0.5))
     end_pos = (int(start_pos[0] + 0.5 * wind.radius * np.cos(wind.heading)),
@@ -42,7 +39,7 @@ def DrawBag(discSlot, hoverCheck):
                            [int(discSlot.pos.x + 0.5 * discSlot.r), int(discSlot.pos.y + 0.5 * discSlot.r)],
                            int((discSlot.r + 10) * 0.5),
                            width=0)
-    DrawCircle(discSlot, discSlot.color)
+    discSlot.draw(discSlot.color)
     textSurface = pygame.font.Font('freesansbold.ttf', 12).render(discSlot.name, True, color.WHITE)
     textRect = textSurface.get_rect()
     textRect.center = (int(discSlot.pos.x + discSlot.r * 0.5), int(discSlot.pos.y - 15))
@@ -111,12 +108,12 @@ while True:
 
     # Draw objects
     DrawHole()
-    DrawCircle(basket, color.GREY)
-    DrawCircle(disc, disc.color)
+    basket.draw(color.GREY)
+    disc.draw(disc.color)
     DrawWind(wind)
 
     for tree in trees:
-        DrawCircle(tree, color.DARK_GREEN)
+        tree.draw(color.DARK_GREEN)
     if mouse_down:
         pygame.draw.line(screen, color.YELLOW, click_start, pygame.mouse.get_pos(), width=5)
 
