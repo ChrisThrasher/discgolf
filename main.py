@@ -109,7 +109,7 @@ while True:
     # Draw objects
     DrawHole()
     basket.draw(color.GREY)
-    disc.draw(disc.color)
+    disc.draw()
     DrawWind(wind)
 
     for tree in trees:

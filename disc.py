@@ -36,3 +36,5 @@ class Disc(Circle):
     def stop(self):
         self.vel = Vec2(0.0, 0.0)
         self.height = 1.0
+    def draw(self):
+        super().draw(self.color)
