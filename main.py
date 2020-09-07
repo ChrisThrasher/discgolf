@@ -72,7 +72,7 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Change Disc Logic
             for discs in bag:
-                if pow(discs.xc - mouse[0], 2) + pow(discs.yc - mouse[1], 2) <= pow(discs.r, 2):
+                if pow(discs.xc - mouse[0], 2) + pow(discs.yc - mouse[1], 2) <= pow(discs.r, 2) and disc.speed() == 0.0:
                     disc.color = discs.color
                     disc.resistance_coef = discs.resistance_coef
             # Space Not Valid when Choosing Discs
