@@ -22,7 +22,7 @@ class BagSlot(Circle):
         super().draw(self.color)
         textSurface = pygame.font.Font('freesansbold.ttf', 12).render(self.name, True, color.WHITE)
         textRect = textSurface.get_rect()
-        textRect.center = (int(self.pos.x + self.radius * 0.5), int(self.pos.y - 15))
+        textRect.center = (int(self.center.x), int(self.pos.y - 15))
         screen.blit(textSurface, textRect)
 
 DRIVER = BagSlot(Vec2(750, 50), 40, 'Driver', color.WHITE, 0.01)
