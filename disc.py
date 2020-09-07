@@ -1,15 +1,16 @@
 import math
 
 from circle import Circle
+from vec2 import Vec2
 
 class Disc(Circle):
     def __init__(self, pos, radius, color, resistance_coef):
         super().__init__(pos, radius)
+        self.vel = Vec2(0.0, 0.0)
         self.color = color
         self.resistance_coef = resistance_coef
     def update_position(self, dt):
-        self.pos.x = dt * self.vx + self.pos.x
-        self.pos.y = dt * self.vy + self.pos.y
+        self.pos = self.vel * dt + self.pos
     def update_velocity(self, dt, wind):
         if (self.height < 0 or self.speed() == 0):
             self.stop()
@@ -17,26 +18,22 @@ class Disc(Circle):
         self.height = self.height - 0.005
         resistance_coef = 0.015
         resistive_accel = resistance_coef * self.relative_speed2(wind)
-        self.vx = self.vx - resistive_accel * math.cos(self.relative_heading(wind)) * dt
-        self.vy = self.vy - resistive_accel * math.sin(self.relative_heading(wind)) * dt
+        self.vel.x = self.vel.x - resistive_accel * math.cos(self.relative_heading(wind)) * dt
+        self.vel.y = self.vel.y - resistive_accel * math.sin(self.relative_heading(wind)) * dt
     def throw(self, mouse_movement):
-        throw_gain = 2.0
-        self.vx = throw_gain * mouse_movement[0]
-        self.vy = throw_gain * mouse_movement[1]
+        self.vel = Vec2(mouse_movement[0], mouse_movement[1]) * 2.0
     def hit(self, obs):
         return (self.pos - obs.pos).norm2() <= pow((self.radius + obs.radius) / 2, 2)
     def speed(self):
-        return math.sqrt(pow(self.vx, 2) + pow(self.vy, 2))
+        return self.vel.norm()
     def relative_speed2(self, wind):
-        return pow(self.vx - wind.vx, 2) + pow(self.vy - wind.vy, 2)
+        return (self.vel - wind.vel).norm2()
     def relative_heading(self, wind):
-        return math.atan2(self.vy - wind.vy, self.vx - wind.vx)
+        relative_speed = self.vel - wind.vel
+        return math.atan2(relative_speed.y, relative_speed.x)
     def off_screen(self, width, height):
         return self.pos.x < 0 or self.pos.x > width or self.pos.y < 0 or self.pos.y > height
     def stop(self):
-        self.vx = 0
-        self.vy = 0
+        self.vel = Vec2(0.0, 0.0)
         self.height = 1.0
-    vx: float = 0.0
-    vy: float = 0.0
     height: float = 1.0
