@@ -1,6 +1,6 @@
 import math
 
-from constants import *
+from screen import *
 from circle import Circle
 from vec2 import Vec2
 

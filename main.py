@@ -5,8 +5,7 @@ import pygame
 
 import color
 
-from screen import screen
-from constants import *
+from screen import screen, FRAME_RATE
 from circle import Circle
 from disc import Disc
 from wind import Wind
