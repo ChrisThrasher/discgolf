@@ -91,10 +91,7 @@ while True:
 
     # Change color of bag slot if hovering over an option
     for slot in BAG:
-        if slot.hit(mouse):
-            slot.draw(hoverCheck=True)
-        else:
-            slot.draw(hoverCheck=False)
+        slot.draw(hoverCheck=slot.hit(mouse))
 
     disc.draw()
 
