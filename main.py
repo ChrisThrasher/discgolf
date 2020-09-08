@@ -31,7 +31,7 @@ disc = Disc(Vec2(400, 500), 5, color=BAG[0].color, resistance_coef=BAG[0].resist
 validSpace = True
 
 while True:
-    # Track Mouse Position at all Times
+    # Track mouse position at all times
     mouse.pos = Vec2.from_tuple(pygame.mouse.get_pos())
 
     for event in pygame.event.get():
