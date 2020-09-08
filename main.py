@@ -26,10 +26,10 @@ clock = pygame.time.Clock()
 mouse_down = False
 stroke_count = 0
 
-basket = Circle(Vec2(390, 120), 10)
+basket = Circle(Vec2(400, 120), 10)
 trees = [Circle(Vec2(400, 300), 5), Circle(Vec2(400, 350), 5), Circle(Vec2(350, 300), 5)]
-wind = Wind(Vec2(50, 50), 50, max_speed=50)
-disc = Disc(Vec2(395, 500), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
+wind = Wind(Vec2(100, 100), 50, max_speed=50)
+disc = Disc(Vec2(400, 500), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
 validSpace = True
 
 while True:
