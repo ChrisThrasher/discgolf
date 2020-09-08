@@ -29,7 +29,6 @@ trees = [Circle(Vec2(400, 300), 5, color.DARK_GREEN),
          Circle(Vec2(350, 300), 5, color.DARK_GREEN)]
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
 disc = Disc(Vec2(400, 500), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
-validSpace = True
 
 while True:
     # Track mouse position at all times
