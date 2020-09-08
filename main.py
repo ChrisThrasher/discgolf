@@ -12,6 +12,7 @@ from disc import Disc
 from wind import Wind
 from bag import BAG
 from vec2 import Vec2
+from mouse import Mouse
 
 def DrawHole():
     screen.fill(color.GREEN)
@@ -19,46 +20,34 @@ def DrawHole():
     pygame.draw.rect(screen, color.LIGHT_GREY, [390, 480, 20, 50])
 
 pygame.init()
-
 clock = pygame.time.Clock()
-
-mouse_down = False
 stroke_count = 0
+mouse = Mouse()
 
-basket = Circle(Vec2(400, 120), 10)
-trees = [Circle(Vec2(400, 300), 5), Circle(Vec2(400, 350), 5), Circle(Vec2(350, 300), 5)]
+basket = Circle(Vec2(400, 120), 10, color.GREY)
+trees = [Circle(Vec2(400, 300), 5, color.DARK_GREEN), Circle(Vec2(400, 350), 5, color.DARK_GREEN), Circle(Vec2(350, 300), 5, color.DARK_GREEN)]
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
 disc = Disc(Vec2(400, 500), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
 validSpace = True
 
 while True:
-    # Track Mouse Position at all Times
-    mouse = Vec2.from_tuple(pygame.mouse.get_pos())
+    # Track mouse position at all times
+    mouse.pos = Vec2.from_tuple(pygame.mouse.get_pos())
 
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            # Change disc parameters
-            for slot in BAG:
-                if slot.hit(mouse) and disc.speed() == 0.0:
-                    disc.color = slot.color
-                    disc.resistance_coef = slot.resistance_coef
-            # Space not valid when choosing discs
-        for slot in BAG:
-            if slot.hit(mouse):
-                validSpace = False
-                break
         if event.type == pygame.QUIT:
             sys.exit()
-        if validSpace == True:
-            if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
-                mouse_down = True
-                pygame.mouse.get_rel()
-                click_start = pygame.mouse.get_pos()
-            if event.type == pygame.MOUSEBUTTONUP and mouse_down:
-                mouse_down = False
-                disc.throw(pygame.mouse.get_rel())
-                stroke_count = stroke_count + 1
-        validSpace = True
+        if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
+            for slot in BAG:
+                if mouse.overlaps(slot) and disc.speed() == 0.0:
+                    disc.color = slot.color
+                    disc.resistance_coef = slot.resistance_coef
+                    break
+            mouse.down()
+        if event.type == pygame.MOUSEBUTTONUP and mouse.clicking:
+            mouse.up()
+            disc.throw(pygame.mouse.get_rel())
+            stroke_count = stroke_count + 1
 
     # Update disc
     if not disc.hit(basket):
@@ -81,22 +70,18 @@ while True:
 
     # Draw objects
     DrawHole()
-    basket.draw(color.GREY)
+    basket.draw()
     wind.draw()
 
     for tree in trees:
-        tree.draw(color.DARK_GREEN)
-    if mouse_down:
-        pygame.draw.line(screen, color.YELLOW, click_start, pygame.mouse.get_pos(), width=5)
+        tree.draw()
 
     # Change color of bag slot if hovering over an option
     for slot in BAG:
-        if slot.hit(mouse):
-            slot.draw(hoverCheck=True)
-        else:
-            slot.draw(hoverCheck=False)
+        slot.draw(hoverCheck=mouse.overlaps(slot))
 
     disc.draw()
+    mouse.draw()
 
     # Finish cycle
     pygame.display.update()
