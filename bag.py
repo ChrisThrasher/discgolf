@@ -3,7 +3,6 @@ import color
 
 from screen import screen
 from circle import Circle
-from constants import *
 from vec2 import Vec2
 
 class BagSlot(Circle):
