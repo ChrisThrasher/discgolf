@@ -40,21 +40,19 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Change disc parameters
             for slot in BAG:
-                if slot.hit(mouse.pos) and disc.speed() == 0.0:
+                if mouse.overlaps(slot) and disc.speed() == 0.0:
                     disc.color = slot.color
                     disc.resistance_coef = slot.resistance_coef
             # Space not valid when choosing discs
         for slot in BAG:
-            if slot.hit(mouse.pos):
+            if mouse.overlaps(slot):
                 validSpace = False
                 break
         if validSpace == True:
             if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
-                mouse.clicking = True
-                pygame.mouse.get_rel()
-                mouse.click_start = pygame.mouse.get_pos()
+                mouse.down()
             if event.type == pygame.MOUSEBUTTONUP and mouse.clicking:
-                mouse.clicking = False
+                mouse.up()
                 disc.throw(pygame.mouse.get_rel())
                 stroke_count = stroke_count + 1
         validSpace = True
@@ -88,7 +86,7 @@ while True:
 
     # Change color of bag slot if hovering over an option
     for slot in BAG:
-        slot.draw(hoverCheck=slot.hit(mouse.pos))
+        slot.draw(hoverCheck=mouse.overlaps(slot))
 
     disc.draw()
     mouse.draw()
