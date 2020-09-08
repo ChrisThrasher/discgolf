@@ -24,7 +24,7 @@ stroke_count = 0
 mouse = Mouse()
 
 basket = Circle(Vec2(400, 120), 10, color.GREY)
-trees = [Circle(Vec2(400, 300), 5, color.DARK_GREEN),
+trees = [Circle(Vec2(450, 300), 5, color.DARK_GREEN),
          Circle(Vec2(400, 350), 5, color.DARK_GREEN),
          Circle(Vec2(350, 300), 5, color.DARK_GREEN)]
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
