@@ -7,8 +7,7 @@ from vec2 import Vec2
 
 class BagSlot(Circle):
     def __init__(self, pos, radius, name, color, resistance_coef):
-        super().__init__(pos, radius)
-        self.color = color
+        super().__init__(pos, radius, color)
         self.name = name
         self.resistance_coef = resistance_coef
     def draw(self, hoverCheck):
@@ -18,7 +17,7 @@ class BagSlot(Circle):
                                [int(self.pos.x), int(self.pos.y)],
                                int(self.radius + 5),
                                width=0)
-        super().draw(self.color)
+        super().draw()
         textSurface = pygame.font.Font('freesansbold.ttf', 12).render(self.name, True, color.WHITE)
         textRect = textSurface.get_rect()
         textRect.center = (int(self.pos.x), int(self.pos.y - self.radius - 15))

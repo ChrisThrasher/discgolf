@@ -5,9 +5,8 @@ from vec2 import Vec2
 
 class Disc(Circle):
     def __init__(self, pos, radius, color, resistance_coef):
-        super().__init__(pos, radius)
+        super().__init__(pos, radius, color)
         self.vel = Vec2(0.0, 0.0)
-        self.color = color
         self.resistance_coef = resistance_coef
         self.height = 1.0
     def update_position(self, dt):
@@ -36,5 +35,3 @@ class Disc(Circle):
     def stop(self):
         self.vel = Vec2(0.0, 0.0)
         self.height = 1.0
-    def draw(self):
-        super().draw(self.color)

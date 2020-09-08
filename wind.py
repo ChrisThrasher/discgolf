@@ -9,7 +9,7 @@ from vec2 import Vec2
 
 class Wind(Circle):
     def __init__(self, pos, radius, max_speed):
-        super().__init__(pos, radius)
+        super().__init__(pos, radius, color.LIGHT_GREY)
         self.speed = np.random.rand() * max_speed
         self.heading = np.deg2rad(np.random.randint(360))
         self.vel = Vec2(np.cos(self.heading), np.sin(self.heading)) * self.speed
@@ -17,7 +17,7 @@ class Wind(Circle):
         text_surface = font.render(text, True, color.WHITE)
         return text_surface, text_surface.get_rect()
     def draw(self):
-        super().draw(color.LIGHT_GREY)
+        super().draw()
         start_pos = self.pos
         end_pos = self.pos + Vec2(np.cos(self.heading), np.sin(self.heading)) * self.radius
         pygame.draw.line(screen, color.WHITE, start_pos.as_tuple(), end_pos.as_tuple(), width=5)
