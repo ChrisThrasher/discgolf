@@ -1,8 +1,6 @@
+from vec2 import Vec2
+
 class Circle:
-    def __init__(self, x, y, radius):
-        self.x = x
-        self.y = y
+    def __init__(self, pos, radius):
+        self.pos = pos
         self.radius = radius
-    x: int
-    y: int
-    radius: int
