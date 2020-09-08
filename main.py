@@ -37,25 +37,17 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            # Change disc parameters
+        if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
             for slot in BAG:
                 if mouse.overlaps(slot) and disc.speed() == 0.0:
                     disc.color = slot.color
                     disc.resistance_coef = slot.resistance_coef
-            # Space not valid when choosing discs
-        for slot in BAG:
-            if mouse.overlaps(slot):
-                validSpace = False
-                break
-        if validSpace == True:
-            if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
-                mouse.down()
-            if event.type == pygame.MOUSEBUTTONUP and mouse.clicking:
-                mouse.up()
-                disc.throw(pygame.mouse.get_rel())
-                stroke_count = stroke_count + 1
-        validSpace = True
+                    break
+            mouse.down()
+        if event.type == pygame.MOUSEBUTTONUP and mouse.clicking:
+            mouse.up()
+            disc.throw(pygame.mouse.get_rel())
+            stroke_count = stroke_count + 1
 
     # Update disc
     if not disc.hit(basket):
