@@ -11,7 +11,7 @@ class BagSlot(Circle):
         self.name = name
         self.resistance_coef = resistance_coef
     def draw(self, hoverCheck):
-        if hoverCheck == True:
+        if hoverCheck:
             pygame.draw.circle(screen,
                                color.LIGHT_GREY,
                                [int(self.pos.x), int(self.pos.y)],
