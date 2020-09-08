@@ -35,6 +35,8 @@ while True:
     mouse.pos = Vec2.from_tuple(pygame.mouse.get_pos())
 
     for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Change disc parameters
             for slot in BAG:
@@ -46,8 +48,6 @@ while True:
             if slot.hit(mouse.pos):
                 validSpace = False
                 break
-        if event.type == pygame.QUIT:
-            sys.exit()
         if validSpace == True:
             if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
                 mouse.clicking = True
