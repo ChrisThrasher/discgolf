@@ -9,6 +9,7 @@ class Mouse:
     def __init__(self):
         self.pos = Vec2(0, 0)
         self.clicking = False
+        self.click_start = Vec2(0, 0)
     def down(self):
         self.clicking = True
         self.click_start = pygame.mouse.get_pos()
