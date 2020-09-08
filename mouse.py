@@ -11,7 +11,6 @@ class Mouse:
         self.clicking = False
     def down(self):
         self.clicking = True
-        pygame.mouse.get_rel()
         self.click_start = pygame.mouse.get_pos()
     def up(self):
         self.clicking = False

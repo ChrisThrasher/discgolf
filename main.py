@@ -44,6 +44,7 @@ while True:
                     disc.resistance_coef = slot.resistance_coef
                     break
             mouse.down()
+            pygame.mouse.get_rel()
         if event.type == pygame.MOUSEBUTTONUP and mouse.clicking:
             mouse.up()
             disc.throw(pygame.mouse.get_rel())
