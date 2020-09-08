@@ -2,7 +2,15 @@
 
 To install PyGame in macOS 10.15:
 
-` $ python3 -m pip install pygame==2.0.0.dev6`
+```
+$ python3 -m pip install pygame==2.0.0.dev6
+```
+
+To run the game:
+
+```
+$ ./main.py
+```
 
 # Development Goals
 
@@ -22,4 +30,4 @@ To install PyGame in macOS 10.15:
 
 - [x] Wind (speed and direction visualized)
 
-- [] Max length of throw line and color visualization of magnitude
+- [ ] Max length of throw line and color visualization of magnitude
