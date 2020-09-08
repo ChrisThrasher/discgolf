@@ -10,18 +10,18 @@ class BagSlot(Circle):
         super().__init__(pos, radius, color)
         self.name = name
         self.resistance_coef = resistance_coef
-    def draw(self, hoverCheck):
-        if hoverCheck == True:
+    def draw(self, hover_check):
+        if hover_check:
             pygame.draw.circle(screen,
                                color.LIGHT_GREY,
                                [int(self.pos.x), int(self.pos.y)],
                                int(self.radius + 5),
                                width=0)
         super().draw()
-        textSurface = pygame.font.Font('freesansbold.ttf', 12).render(self.name, True, color.WHITE)
-        textRect = textSurface.get_rect()
-        textRect.center = (int(self.pos.x), int(self.pos.y - self.radius - 15))
-        screen.blit(textSurface, textRect)
+        text_surface = pygame.font.Font('freesansbold.ttf', 12).render(self.name, True, color.WHITE)
+        text_rect = text_surface.get_rect()
+        text_rect.center = (int(self.pos.x), int(self.pos.y - self.radius - 15))
+        screen.blit(text_surface, text_rect)
 
 DRIVER = BagSlot(Vec2(750, 50), 20, 'Driver', color.WHITE, 0.01)
 MID_RANGE = BagSlot(Vec2(685, 50), 20, 'Mid Range', color.BLUE, 0.015)

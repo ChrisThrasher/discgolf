@@ -1,5 +1,9 @@
 import pygame
 
-from constants import *
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
+FRAME_RATE = 60
+FRAME_PERIOD = 1.0 / FRAME_RATE
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))

@@ -5,8 +5,7 @@ import pygame
 
 import color
 
-from screen import screen
-from constants import *
+from screen import screen, FRAME_RATE
 from circle import Circle
 from disc import Disc
 from wind import Wind
@@ -25,10 +24,11 @@ stroke_count = 0
 mouse = Mouse()
 
 basket = Circle(Vec2(400, 120), 10, color.GREY)
-trees = [Circle(Vec2(400, 300), 5, color.DARK_GREEN), Circle(Vec2(400, 350), 5, color.DARK_GREEN), Circle(Vec2(350, 300), 5, color.DARK_GREEN)]
+trees = [Circle(Vec2(450, 300), 5, color.DARK_GREEN),
+         Circle(Vec2(400, 350), 5, color.DARK_GREEN),
+         Circle(Vec2(350, 300), 5, color.DARK_GREEN)]
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
 disc = Disc(Vec2(400, 500), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
-validSpace = True
 
 while True:
     # Track mouse position at all times
@@ -44,6 +44,7 @@ while True:
                     disc.resistance_coef = slot.resistance_coef
                     break
             mouse.down()
+            pygame.mouse.get_rel()
         if event.type == pygame.MOUSEBUTTONUP and mouse.clicking:
             mouse.up()
             disc.throw(pygame.mouse.get_rel())
@@ -51,15 +52,15 @@ while True:
 
     # Update disc
     if not disc.hit(basket):
-        disc.update_velocity(FRAME_PERIOD, wind)
+        disc.update_velocity(wind)
         if disc.speed() < 15:
             disc.stop()
-        disc.update_position(FRAME_PERIOD)
+        disc.update_position()
     else:
         print("Completed the hole in", stroke_count, "strokes.")
         break
 
-    if disc.off_screen(SCREEN_WIDTH, SCREEN_HEIGHT):
+    if disc.off_screen():
         print("Disc exited the play area.")
         break
 
@@ -78,7 +79,7 @@ while True:
 
     # Change color of bag slot if hovering over an option
     for slot in BAG:
-        slot.draw(hoverCheck=mouse.overlaps(slot))
+        slot.draw(hover_check=mouse.overlaps(slot))
 
     disc.draw()
     mouse.draw()

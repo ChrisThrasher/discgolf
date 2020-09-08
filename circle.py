@@ -1,7 +1,6 @@
 import pygame
 
 from screen import screen
-from vec2 import Vec2
 
 class Circle:
     def __init__(self, pos, radius, color):
