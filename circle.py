@@ -7,7 +7,5 @@ class Circle:
     def __init__(self, pos, radius):
         self.pos = pos
         self.radius = radius
-    def center(self):
-        return self.pos + Vec2(self.radius, self.radius)
     def draw(self, color):
-        pygame.draw.circle(screen, color, [int(self.center().x), int(self.center().y)], self.radius)
+        pygame.draw.circle(screen, color, [int(self.pos.x), int(self.pos.y)], self.radius)
