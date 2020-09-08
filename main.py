@@ -51,15 +51,15 @@ while True:
 
     # Update disc
     if not disc.hit(basket):
-        disc.update_velocity(FRAME_PERIOD, wind)
+        disc.update_velocity(wind)
         if disc.speed() < 15:
             disc.stop()
-        disc.update_position(FRAME_PERIOD)
+        disc.update_position()
     else:
         print("Completed the hole in", stroke_count, "strokes.")
         break
 
-    if disc.off_screen(SCREEN_WIDTH, SCREEN_HEIGHT):
+    if disc.off_screen():
         print("Disc exited the play area.")
         break
 
