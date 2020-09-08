@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3
 
 import sys
-import numpy as np
 import pygame
 
 import color
@@ -26,10 +25,10 @@ clock = pygame.time.Clock()
 mouse_down = False
 stroke_count = 0
 
-basket = Circle(Vec2(390, 120), 20)
-trees = [Circle(Vec2(400, 300), 10), Circle(Vec2(400, 350), 10), Circle(Vec2(350, 300), 10)]
-wind = Wind(50, 50, 100, max_speed=50)
-disc = Disc(Vec2(395, 500), 10, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
+basket = Circle(Vec2(400, 120), 10)
+trees = [Circle(Vec2(400, 300), 5), Circle(Vec2(400, 350), 5), Circle(Vec2(350, 300), 5)]
+wind = Wind(Vec2(100, 100), 50, max_speed=50)
+disc = Disc(Vec2(400, 500), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
 validSpace = True
 
 while True:
@@ -40,12 +39,12 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Change disc parameters
             for slot in BAG:
-                if (slot.center - mouse).norm() <= slot.r and disc.speed() == 0.0:
+                if slot.hit(mouse) and disc.speed() == 0.0:
                     disc.color = slot.color
                     disc.resistance_coef = slot.resistance_coef
             # Space not valid when choosing discs
         for slot in BAG:
-            if (slot.center - mouse).norm() <= slot.r:
+            if slot.hit(mouse):
                 validSpace = False
                 break
         if event.type == pygame.QUIT:
@@ -83,7 +82,6 @@ while True:
     # Draw objects
     DrawHole()
     basket.draw(color.GREY)
-    disc.draw()
     wind.draw()
 
     for tree in trees:
@@ -93,10 +91,12 @@ while True:
 
     # Change color of bag slot if hovering over an option
     for slot in BAG:
-        if (slot.center - mouse).norm() <= slot.r:
+        if slot.hit(mouse):
             slot.draw(hoverCheck=True)
         else:
             slot.draw(hoverCheck=False)
+
+    disc.draw()
 
     # Finish cycle
     pygame.display.update()
