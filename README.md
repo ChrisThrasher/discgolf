@@ -22,4 +22,4 @@ To install PyGame in macOS 10.15:
 
 - [x] Wind (speed and direction visualized)
 
-- [] Max length of throw line and color visualization of magnitude
+- [ ] Max length of throw line and color visualization of magnitude
