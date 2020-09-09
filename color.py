@@ -3,10 +3,9 @@ import numpy as np
 
 #fade (linear interpolate) from color c1 (at mix=0) to c2 (mix=1)
 def colorFader(c1,c2,mix=0):
-    c1=np.array(mpl.colors.to_rgb(c1))
-    c2=np.array(mpl.colors.to_rgb(c2))
-    return mpl.colors.to_hex((1-mix)*c1 + mix*c2)
-fadeResolution = 500
+    c1 = np.array(c1)
+    c2 = np.array(c2)
+    return tuple((1-mix)*c1 + mix*c2)
 
 WHITE       = (255, 255, 255)
 

@@ -22,12 +22,9 @@ class Mouse:
         return (self.pos - circle.pos).norm() <= circle.radius
     def draw(self):
         if self.clicking:
-            # pygame.draw.line(screen, color.YELLOW, self.click_start, pygame.mouse.get_pos(), width=5)
-            temp = LA.norm(np.subtract(pygame.mouse.get_pos(),self.click_start))
-            colorGradientIdx = temp/self.max_draw_length
+            throw_vec_mag = LA.norm(np.subtract(pygame.mouse.get_pos(),self.click_start))
+            colorGradientIdx = throw_vec_mag/self.max_draw_length
             if colorGradientIdx >= 1:
                 colorGradientIdx = 1
-            c1 = '#ffff00'
-            c2 = '#ff0000'
-            colorGradient = tuple([255*x for x in mpl.colors.to_rgb(color.colorFader(c1,c2,colorGradientIdx))])
+            colorGradient = color.colorFader(color.YELLOW,color.RED,colorGradientIdx)
             pygame.draw.line(screen, colorGradient, self.click_start, pygame.mouse.get_pos(), width=5)
