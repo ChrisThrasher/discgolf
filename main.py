@@ -47,7 +47,7 @@ while True:
             pygame.mouse.get_rel()
         if event.type == pygame.MOUSEBUTTONUP and mouse.clicking:
             mouse.up()
-            disc.throw(pygame.mouse.get_rel())
+            disc.throw(mouse.relative_throw_vec)
             stroke_count = stroke_count + 1
 
     # Update disc
