@@ -27,8 +27,7 @@ class Mouse:
             if colorGradientIdx >= 1:
                 colorGradientIdx = 1
                 mouse_pos_hat    = np.subtract(pygame.mouse.get_pos(),self.click_start) / throw_vec_mag
-                mouse_pos        = tuple([x*self.max_draw_length for x in mouse_pos_hat])
-                mouse_pos        = tuple(np.add(mouse_pos,self.click_start))
+                mouse_pos        = tuple([self.click_start[nt] + x*self.max_draw_length for nt,x in enumerate(mouse_pos_hat)])
             else:
                 mouse_pos = pygame.mouse.get_pos()
             colorGradient = color.colorFader(color.YELLOW,color.RED,colorGradientIdx)
