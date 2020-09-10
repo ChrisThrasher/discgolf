@@ -14,6 +14,8 @@ $ ./main.py
 
 # Development Goals
 
+## v0.1
+
 - [x] 1-hole game
 
 - [x] Stroke counting
@@ -24,10 +26,28 @@ $ ./main.py
 
 - [x] Multiple types of discs
 
-- [ ] 9-hole course
-
-- [ ] Curved disc paths
-
 - [x] Wind (speed and direction visualized)
 
 - [x] Max length of throw line and color visualization of magnitude
+
+## v0.2
+
+- [ ] End screen
+
+- [ ] Disc flight dynamics re-tuning
+
+## v0.3
+
+- [ ] 3-hole course
+
+## v0.4
+
+- [ ] Curved disc paths
+
+## v0.5
+
+- [ ] 9-hole course
+
+## v1.0
+
+- [ ] Scoreboard
