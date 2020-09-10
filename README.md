@@ -30,4 +30,4 @@ $ ./main.py
 
 - [x] Wind (speed and direction visualized)
 
-- [ ] Max length of throw line and color visualization of magnitude
+- [x] Max length of throw line and color visualization of magnitude
