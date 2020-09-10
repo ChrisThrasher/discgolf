@@ -34,6 +34,8 @@ $ ./main.py
 
 - [ ] End screen
 
+- [ ] Disc flight dynamics re-tuning
+
 ## v0.3
 
 - [ ] 3-hole course
