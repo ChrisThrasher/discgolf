@@ -36,6 +36,8 @@ $ ./main.py
 
 - [ ] Disc flight dynamics re-tuning
 
+- [ ] Disc deflection off of on-field obstacles
+
 ## v0.3
 
 - [ ] 3-hole course
