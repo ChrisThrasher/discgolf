@@ -12,7 +12,7 @@ class Mouse:
         self.pos = Vec2(0, 0)
         self.clicking = False
         self.click_start = Vec2(0, 0)
-        self.max_draw_length = 300
+        self.max_draw_length = 250
         self.relative_throw_vec = Vec2(0, 0)
     def down(self):
         self.clicking = True
