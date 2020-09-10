@@ -48,6 +48,6 @@ $ ./main.py
 
 - [ ] 9-hole course
 
-## v0.6
+## v1.0
 
 - [ ] Scoreboard
