@@ -5,7 +5,7 @@ from screen import screen
 from circle import Circle
 from vec2 import Vec2
 
-class BagSlot(Circle):
+class Slot(Circle):
     def __init__(self, pos, radius, name, color, resistance_coef):
         super().__init__(pos, radius, color)
         self.name = name
@@ -23,8 +23,17 @@ class BagSlot(Circle):
         text_rect.center = (int(self.pos.x), int(self.pos.y - self.radius - 15))
         screen.blit(text_surface, text_rect)
 
-DRIVER = BagSlot(Vec2(750, 50), 20, 'Driver', color.WHITE, 0.01)
-MID_RANGE = BagSlot(Vec2(685, 50), 20, 'Mid Range', color.BLUE, 0.015)
-PUTTER = BagSlot(Vec2(620, 50), 20, 'Putter', color.ORANGE, 0.02)
+class Bag:
+    def __init__(self, slots):
+        self.slots = slots
+    def default_disc(self):
+        return self.slots[0]
+    def draw(self, mouse):
+        for slot in self.slots:
+            slot.draw(mouse.overlaps(slot))
 
-BAG = [DRIVER, MID_RANGE, PUTTER]
+DRIVER = Slot(Vec2(750, 50), 20, 'Driver', color.WHITE, 0.01)
+MID_RANGE = Slot(Vec2(685, 50), 20, 'Mid Range', color.BLUE, 0.015)
+PUTTER = Slot(Vec2(620, 50), 20, 'Putter', color.ORANGE, 0.02)
+
+BAG = Bag([DRIVER, MID_RANGE, PUTTER])

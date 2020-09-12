@@ -20,7 +20,7 @@ stroke_count = 0
 mouse = Mouse()
 
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
-disc = Disc(COURSE.hole().tee.center(), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
+disc = Disc(COURSE.hole().tee.center(), 5, color=BAG.default_disc().color, resistance_coef=BAG.default_disc().resistance_coef)
 
 while True:
     # Track mouse position at all times
@@ -30,7 +30,7 @@ while True:
         if event.type == pygame.QUIT:
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
-            for slot in BAG:
+            for slot in BAG.slots:
                 if mouse.overlaps(slot) and disc.speed() == 0.0:
                     disc.color = slot.color
                     disc.resistance_coef = slot.resistance_coef
@@ -67,11 +67,7 @@ while True:
     # Draw objects
     COURSE.draw()
     wind.draw()
-
-    # Change color of bag slot if hovering over an option
-    for slot in BAG:
-        slot.draw(hover_check=mouse.overlaps(slot))
-
+    BAG.draw(mouse)
     disc.draw()
     mouse.draw()
 
