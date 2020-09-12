@@ -30,6 +30,6 @@ class Mouse:
                 mouse_pos        = tuple([self.click_start[nt] + x * self.max_draw_length for nt, x in enumerate(mouse_pos_hat)])
             else:
                 mouse_pos = pygame.mouse.get_pos()
-            self.relative_throw_vec = tuple(np.subtract(mouse_pos, self.click_start))
+            self.relative_throw_vec = Vec2.from_tuple(tuple(np.subtract(mouse_pos, self.click_start)))
             colorGradient = color.colorFader(color.YELLOW, color.RED, colorGradientIdx)
             pygame.draw.line(screen, colorGradient, self.click_start, mouse_pos, width=5)

@@ -21,7 +21,7 @@ class Disc(Circle):
         self.vel.x = self.vel.x - resistive_accel * math.cos(self.relative_heading(wind)) * FRAME_PERIOD
         self.vel.y = self.vel.y - resistive_accel * math.sin(self.relative_heading(wind)) * FRAME_PERIOD
     def throw(self, mouse_movement):
-        self.vel = Vec2(mouse_movement[0], mouse_movement[1]) * 2.0
+        self.vel = mouse_movement * 2.0
     def hit(self, obs):
         return (self.pos - obs.pos).norm() <= (self.radius + obs.radius)
     def speed(self):
