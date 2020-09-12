@@ -10,6 +10,9 @@ class Disc(Circle):
         self.vel = Vec2(0.0, 0.0)
         self.resistance_coef = bag_slot.resistance_coef
         self.height = 1.0
+    def change_slot(self, bag_slot):
+        self.color = bag_slot.color
+        self.resistance_coef = bag_slot.resistance_coef
     def update_position(self):
         self.pos = self.vel * FRAME_PERIOD + self.pos
     def update_velocity(self, wind):

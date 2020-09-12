@@ -28,8 +28,7 @@ while True:
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN and disc.speed() == 0:
             if BAG.is_selected(mouse) and disc.speed() == 0.0:
-                disc.color = BAG.selected.color
-                disc.resistance_coef = BAG.selected.resistance_coef
+                disc.change_slot(BAG.selected)
                 break
             mouse.down()
             pygame.mouse.get_rel()
