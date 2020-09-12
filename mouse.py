@@ -2,7 +2,6 @@ import pygame
 from numpy import linalg as LA
 import numpy as np
 import color
-import matplotlib as mpl
 
 from screen import screen
 from vec2 import Vec2
