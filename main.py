@@ -17,7 +17,7 @@ stroke_count = 0
 mouse = Mouse()
 
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
-disc = Disc(COURSE.hole().tee.center(), 5, color=BAG.selected.color, resistance_coef=BAG.selected.resistance_coef)
+disc = Disc(COURSE.hole().tee.center(), 5, BAG.selected)
 
 while True:
     # Track mouse position at all times

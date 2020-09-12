@@ -5,10 +5,10 @@ from circle import Circle
 from vec2 import Vec2
 
 class Disc(Circle):
-    def __init__(self, pos, radius, color, resistance_coef):
-        super().__init__(pos, radius, color)
+    def __init__(self, pos, radius, bag_slot):
+        super().__init__(pos, radius, bag_slot.color)
         self.vel = Vec2(0.0, 0.0)
-        self.resistance_coef = resistance_coef
+        self.resistance_coef = bag_slot.resistance_coef
         self.height = 1.0
     def update_position(self):
         self.pos = self.vel * FRAME_PERIOD + self.pos
