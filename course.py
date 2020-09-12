@@ -33,8 +33,10 @@ class Hole:
     def check_collision(self, disc):
         for tree in self.trees:
             if disc.hit(tree):
-                return True
-        return False
+                tree_to_disc = disc.pos - tree.pos
+                direction = tree_to_disc / tree_to_disc.norm()
+                disc.pos = direction * (tree.radius + disc.radius + 5) + tree.pos
+                disc.stop()
     def reset(self, disc):
         disc.pos = self.tee.pos
     def draw(self):
