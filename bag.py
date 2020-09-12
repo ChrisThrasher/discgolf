@@ -6,10 +6,11 @@ from circle import Circle
 from vec2 import Vec2
 
 class Slot(Circle):
-    def __init__(self, pos, radius, name, color, resistance_coef):
+    def __init__(self, pos, radius, name, color, resistance_coef, initial_height):
         super().__init__(pos, radius, color)
         self.name = name
         self.resistance_coef = resistance_coef
+        self.initial_height = initial_height
     def draw(self, hover_check):
         if hover_check:
             pygame.draw.circle(screen,
@@ -37,8 +38,8 @@ class Bag:
         for slot in self.slots:
             slot.draw(mouse.overlaps(slot))
 
-DRIVER = Slot(Vec2(750, 50), 20, 'Driver', color.WHITE, 0.01)
-MID_RANGE = Slot(Vec2(685, 50), 20, 'Mid Range', color.BLUE, 0.015)
-PUTTER = Slot(Vec2(620, 50), 20, 'Putter', color.ORANGE, 0.02)
+DRIVER    = Slot(Vec2(750, 50), 20, 'Driver',    color.WHITE,  0.010, 1.0)
+MID_RANGE = Slot(Vec2(685, 50), 20, 'Mid Range', color.BLUE,   0.015, 0.8)
+PUTTER    = Slot(Vec2(620, 50), 20, 'Putter',    color.ORANGE, 0.020, 0.3)
 
 BAG = Bag([DRIVER, MID_RANGE, PUTTER])
