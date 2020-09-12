@@ -62,9 +62,8 @@ while True:
         break
 
     # Detect obstacle collisions
-    for tree in COURSE.hole().trees:
-        if disc.hit(tree):
-            disc.vel = Vec2(0.0, 0.0)
+    if COURSE.hole().check_collision(disc):
+        disc.stop()
 
     # Draw objects
     COURSE.draw()

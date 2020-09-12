@@ -30,6 +30,11 @@ class Hole:
         self.tee = tee
         self.trees = trees
         self.basket = basket
+    def check_collision(self, disc):
+        for tree in self.trees:
+            if disc.hit(tree):
+                return True
+        return False
     def reset(self, disc):
         disc.pos = self.tee.pos
     def draw(self):
