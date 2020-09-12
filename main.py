@@ -20,7 +20,7 @@ stroke_count = 0
 mouse = Mouse()
 
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
-disc = Disc(Vec2(400, 500), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
+disc = Disc(COURSE.hole().tee.center(), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
 
 while True:
     # Track mouse position at all times
@@ -50,7 +50,11 @@ while True:
         disc.update_position()
     else:
         print("Completed the hole in", stroke_count, "strokes.")
-        if not COURSE.next_hole():
+        if COURSE.next_hole():
+            disc.pos = COURSE.hole().tee.center()
+            disc.stop()
+            stroke_count = 0
+        else:
             break
 
     if disc.off_screen():
