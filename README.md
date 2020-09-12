@@ -32,15 +32,15 @@ $ ./main.py
 
 ## v0.2
 
+- [x] 3-hole course
+
+## v0.3
+
 - [ ] End screen
 
 - [ ] Disc flight dynamics re-tuning
 
 - [ ] Disc deflection off of on-field obstacles
-
-## v0.3
-
-- [ ] 3-hole course
 
 ## v0.4
 

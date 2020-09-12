@@ -15,6 +15,8 @@ class Vec2:
         return Vec2(self.x - rhs.x, self.y - rhs.y)
     def __mul__(self, scalar):
         return Vec2(self.x * scalar, self.y * scalar)
+    def __truediv__(self, scalar):
+        return Vec2(self.x / scalar, self.y / scalar)
     def norm(self):
         return math.sqrt(self.norm2())
     def norm2(self):
