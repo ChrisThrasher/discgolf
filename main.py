@@ -12,11 +12,7 @@ from wind import Wind
 from bag import BAG
 from vec2 import Vec2
 from mouse import Mouse
-
-def DrawHole():
-    screen.fill(color.GREEN)
-    pygame.draw.ellipse(screen, color.LIGHT_GREEN, [340, 100, 120, 400])
-    pygame.draw.rect(screen, color.LIGHT_GREY, [390, 480, 20, 50])
+from course import *
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -29,6 +25,7 @@ trees = [Circle(Vec2(450, 300), 5, color.DARK_GREEN),
          Circle(Vec2(350, 300), 5, color.DARK_GREEN)]
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
 disc = Disc(Vec2(400, 500), 5, color=BAG[0].color, resistance_coef=BAG[0].resistance_coef)
+course = Course()
 
 while True:
     # Track mouse position at all times
@@ -58,7 +55,8 @@ while True:
         disc.update_position()
     else:
         print("Completed the hole in", stroke_count, "strokes.")
-        break
+        if not course.next_hole():
+            break
 
     if disc.off_screen():
         print("Disc exited the play area.")
@@ -70,7 +68,7 @@ while True:
             disc.vel = Vec2(0.0, 0.0)
 
     # Draw objects
-    DrawHole()
+    course.draw()
     basket.draw()
     wind.draw()
 
