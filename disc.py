@@ -12,9 +12,11 @@ class Disc(Circle):
     def change_slot(self, bag_slot):
         self.color = bag_slot.color
         self.resistance_coef = bag_slot.resistance_coef
-        self.height = bag_slot.initial_height
+        self.initial_height = bag_slot.initial_height
+        self.height = self.initial_height
     def update_position(self):
         self.pos = self.vel * FRAME_PERIOD + self.pos
+        print(self.height)
     def update_velocity(self, wind):
         if (self.height < 0 or self.speed() == 0):
             self.stop()
@@ -38,4 +40,4 @@ class Disc(Circle):
         return self.pos.x < 0 or self.pos.x > SCREEN_WIDTH or self.pos.y < 0 or self.pos.y > SCREEN_HEIGHT
     def stop(self):
         self.vel = Vec2(0.0, 0.0)
-        self.height = 1.0
+        self.height = self.initial_height

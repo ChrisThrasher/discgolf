@@ -40,6 +40,6 @@ class Bag:
 
 DRIVER    = Slot(Vec2(750, 50), 20, 'Driver',    color.WHITE,  0.010, 1.0)
 MID_RANGE = Slot(Vec2(685, 50), 20, 'Mid Range', color.BLUE,   0.015, 0.8)
-PUTTER    = Slot(Vec2(620, 50), 20, 'Putter',    color.ORANGE, 0.020, 0.3)
+PUTTER    = Slot(Vec2(620, 50), 20, 'Putter',    color.ORANGE, 0.020, 0.2)
 
 BAG = Bag([DRIVER, MID_RANGE, PUTTER])
