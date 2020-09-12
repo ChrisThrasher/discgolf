@@ -77,4 +77,14 @@ trees2 = [Circle(Vec2(440, 200), 5, color.DARK_GREEN),
 basket2 = Circle(Vec2(400, 120), 10, color.GREY)
 hole2 = Hole(fairway2, tee2, trees2, basket2)
 
-COURSE = Course([hole1, hole2])
+fairway3 = Fairway(Vec2(340, 100), 120, 400)
+tee3 = Tee(Vec2(390, 480))
+trees3 = [Circle(Vec2(440, 200), 5, color.DARK_GREEN),
+          Circle(Vec2(420, 250), 5, color.DARK_GREEN),
+          Circle(Vec2(400, 300), 5, color.DARK_GREEN),
+          Circle(Vec2(380, 250), 5, color.DARK_GREEN),
+          Circle(Vec2(360, 200), 5, color.DARK_GREEN)]
+basket3 = Circle(Vec2(400, 120), 10, color.GREY)
+hole3 = Hole(fairway3, tee3, trees3, basket3)
+
+COURSE = Course([hole1, hole2, hole3])

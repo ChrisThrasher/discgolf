@@ -32,7 +32,7 @@ $ ./main.py
 
 ## v0.2
 
-- [ ] 3-hole course
+- [x] 3-hole course
 
 ## v0.3
 
