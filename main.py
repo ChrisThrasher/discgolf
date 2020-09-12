@@ -3,10 +3,7 @@
 import sys
 import pygame
 
-import color
-
-from screen import screen, FRAME_RATE
-from circle import Circle
+from screen import FRAME_RATE
 from disc import Disc
 from wind import Wind
 from bag import BAG
