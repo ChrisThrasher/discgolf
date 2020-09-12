@@ -16,7 +16,6 @@ class Disc(Circle):
         self.height = self.initial_height
     def update_position(self):
         self.pos = self.vel * FRAME_PERIOD + self.pos
-        print(self.height)
     def update_velocity(self, wind):
         if (self.height < 0 or self.speed() == 0):
             self.stop()
