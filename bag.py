@@ -26,8 +26,13 @@ class Slot(Circle):
 class Bag:
     def __init__(self, slots):
         self.slots = slots
-    def default_disc(self):
-        return self.slots[0]
+        self.selected = slots[0]
+    def is_selected(self, mouse):
+        for slot in self.slots:
+            if mouse.overlaps(slot):
+                self.selected = slot
+                return True
+        return False
     def draw(self, mouse):
         for slot in self.slots:
             slot.draw(mouse.overlaps(slot))
