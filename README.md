@@ -38,7 +38,7 @@ $ ./main.py
 
 - [ ] End screen
 
-- [ ] Disc flight dynamics re-tuning
+- [x] Disc flight dynamics re-tuning
 
 - [ ] Disc deflection off of on-field obstacles
 
