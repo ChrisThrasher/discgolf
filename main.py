@@ -24,19 +24,6 @@ mouse = Mouse()
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
 disc = Disc(COURSE.hole().tee.center(), 5, BAG.selected)
 
-def button(msg, x, y, w, h, ic, ac, action):
-    if x + w > mouse.get_pos().x > x and y + h > mouse.get_pos().y > y:
-        pygame.draw.rect(screen, ac, (x, y, w, h))
-        if pygame.mouse.get_pressed()[0] == 1:
-            action()
-    else:
-        pygame.draw.rect(screen, ic, (x, y, w, h))
-
-    text_surf = sys_font.render(msg, True, color.WHITE)
-    text_rect = text_surf.get_rect()
-    text_rect.center = ((x + (w // 2)), (y + (h // 2)))
-    screen.blit(text_surf, text_rect)
-
 while True:
     # Track mouse position at all times
     mouse.pos = Vec2.from_tuple(pygame.mouse.get_pos())
@@ -88,6 +75,19 @@ while True:
     # Finish cycle
     pygame.display.update()
     clock.tick(FRAME_RATE)
+
+def button(msg, x, y, w, h, ic, ac, action):
+    if x + w > mouse.get_pos().x > x and y + h > mouse.get_pos().y > y:
+        pygame.draw.rect(screen, ac, (x, y, w, h))
+        if pygame.mouse.get_pressed()[0] == 1:
+            action()
+    else:
+        pygame.draw.rect(screen, ic, (x, y, w, h))
+
+    text_surf = sys_font.render(msg, True, color.WHITE)
+    text_rect = text_surf.get_rect()
+    text_rect.center = ((x + (w // 2)), (y + (h // 2)))
+    screen.blit(text_surf, text_rect)
 
 while True:
     pygame.event.clear()
