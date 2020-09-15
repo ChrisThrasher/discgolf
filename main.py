@@ -5,7 +5,7 @@ import pygame
 
 import color
 
-from screen import screen, FRAME_RATE
+from screen import screen, FRAME_RATE, SCREEN_WIDTH, SCREEN_HEIGHT
 from disc import Disc
 from wind import Wind
 from bag import BAG
@@ -84,7 +84,8 @@ def button(msg, x, y, w, h, ic, ac, action):
     else:
         pygame.draw.rect(screen, ic, (x, y, w, h))
 
-    text_surf = sys_font.render(msg, True, color.WHITE)
+    font = pygame.font.SysFont(None, 48)
+    text_surf = font.render(msg, True, color.WHITE)
     text_rect = text_surf.get_rect()
     text_rect.center = ((x + (w // 2)), (y + (h // 2)))
     screen.blit(text_surf, text_rect)
@@ -92,5 +93,5 @@ def button(msg, x, y, w, h, ic, ac, action):
 while True:
     pygame.event.clear()
     screen.fill(color.BLACK)
-    button('Click to Exit', 100, 300, 100, 24, color.BLACK, color.LIGHT_GREY, sys.exit)
+    button('Click to Exit', SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 - 25, 200, 50, color.BLACK, color.LIGHT_GREY, sys.exit)
     pygame.display.update()
