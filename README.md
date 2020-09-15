@@ -36,15 +36,15 @@ $ ./main.py
 
 ## v0.3
 
-- [ ] End screen
+- [x] End screen
 
 - [x] Disc flight dynamics re-tuning
-
-- [ ] Disc deflection off of on-field obstacles
 
 ## v0.4
 
 - [ ] Curved disc paths
+
+- [ ] Disc deflection off of on-field obstacles
 
 ## v0.5
 

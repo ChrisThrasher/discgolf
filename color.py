@@ -12,6 +12,8 @@ WHITE       = (255, 255, 255)
 LIGHT_GREY  = (185, 185, 185)
 GREY        = ( 82,  82,  82)
 
+BLACK       = (  0,   0,   0)
+
 DARK_GREEN  = ( 11,  61,  17)
 GREEN       = ( 16, 122,  39)
 LIGHT_GREEN = ( 16, 163,  48)

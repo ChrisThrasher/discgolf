@@ -3,7 +3,9 @@
 import sys
 import pygame
 
-from screen import FRAME_RATE
+import color
+
+from screen import screen, FRAME_RATE, SCREEN_WIDTH, SCREEN_HEIGHT
 from disc import Disc
 from wind import Wind
 from bag import BAG
@@ -13,6 +15,9 @@ from course import COURSE
 
 pygame.init()
 clock = pygame.time.Clock()
+
+sys_font = pygame.font.SysFont(None, 24)
+
 stroke_count = 0
 mouse = Mouse()
 
@@ -71,4 +76,22 @@ while True:
     pygame.display.update()
     clock.tick(FRAME_RATE)
 
-pygame.quit()
+def button(msg, x, y, w, h, ic, ac, action):
+    if x + w > mouse.get_pos().x > x and y + h > mouse.get_pos().y > y:
+        pygame.draw.rect(screen, ac, (x, y, w, h))
+        if pygame.mouse.get_pressed()[0] == 1:
+            action()
+    else:
+        pygame.draw.rect(screen, ic, (x, y, w, h))
+
+    font = pygame.font.SysFont(None, 48)
+    text_surf = font.render(msg, True, color.WHITE)
+    text_rect = text_surf.get_rect()
+    text_rect.center = ((x + (w // 2)), (y + (h // 2)))
+    screen.blit(text_surf, text_rect)
+
+while True:
+    pygame.event.clear()
+    screen.fill(color.BLACK)
+    button('Click to Exit', SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 - 25, 200, 50, color.BLACK, color.LIGHT_GREY, sys.exit)
+    pygame.display.update()
