@@ -3,7 +3,9 @@
 import sys
 import pygame
 
-from screen import FRAME_RATE
+import color
+
+from screen import screen, FRAME_RATE
 from disc import Disc
 from wind import Wind
 from bag import BAG
@@ -13,6 +15,9 @@ from course import COURSE
 
 pygame.init()
 clock = pygame.time.Clock()
+
+sys_font = pygame.font.SysFont(None, 24)
+
 stroke_count = 0
 mouse = Mouse()
 
@@ -70,5 +75,11 @@ while True:
     # Finish cycle
     pygame.display.update()
     clock.tick(FRAME_RATE)
+
+screen.fill(color.BLACK)
+end_text = sys_font.render('Game Over', True, color.WHITE)
+screen.blit(end_text, (20, 20))
+pygame.display.update()
+pygame.time.wait(2000)
 
 pygame.quit()
