@@ -36,7 +36,7 @@ $ ./main.py
 
 ## v0.3
 
-- [ ] End screen
+- [x] End screen
 
 - [x] Disc flight dynamics re-tuning
 
