@@ -19,7 +19,7 @@ class Wind(Circle):
         end_pos = self.pos + Vec2(np.cos(self.heading), np.sin(self.heading)) * self.radius
         pygame.draw.line(screen, color.WHITE, start_pos.as_tuple(), end_pos.as_tuple(), width=5)
         text = ('Wind Speed: ' + str(round(self.speed, 1)))
-        text_surf = pygame.font.Font('freesansbold.ttf', 16).render(text, True, color.WHITE)
+        text_surf = pygame.font.SysFont(None, 24).render(text, True, color.WHITE)
         text_rect = text_surf.get_rect()
         text_rect.center = (int(self.pos.x), int(self.pos.y - self.radius - 15))
         screen.blit(text_surf, text_rect)

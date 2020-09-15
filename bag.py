@@ -19,7 +19,7 @@ class Slot(Circle):
                                int(self.radius + 5),
                                width=0)
         super().draw()
-        text_surface = pygame.font.Font('freesansbold.ttf', 12).render(self.name, True, color.WHITE)
+        text_surface = pygame.font.SysFont(None, 16).render(self.name, True, color.WHITE)
         text_rect = text_surface.get_rect()
         text_rect.center = (int(self.pos.x), int(self.pos.y - self.radius - 15))
         screen.blit(text_surface, text_rect)
