@@ -10,8 +10,8 @@ HOLE1 = pygame.image.load(os.path.join("assets", "Hole1.png"))
 TEE = pygame.image.load(os.path.join("assets", "Tee.png"))
 
 class Tree(Circle):
-    def __init__(self, pos):
-        super().__init__(pos, 5, color.DARK_GREEN)
+    def __init__(self, pos, radius=8):
+        super().__init__(pos, radius, color.DARK_GREEN)
     def draw(self):
         super().draw()
 
