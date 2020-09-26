@@ -29,6 +29,7 @@ class Hole:
         self.tee = tee
         self.trees = trees
         self.basket = basket
+        self.stroke_count = 0
     def check_collision(self, disc):
         for tree in self.trees:
             if disc.hit(tree):
@@ -38,6 +39,8 @@ class Hole:
                 disc.stop()
     def reset(self, disc):
         disc.pos = self.tee.pos
+    def throw(self):
+        self.stroke_count += 1
     def draw(self):
         screen.blit(self.background, (0, 0))
         self.tee.draw()
@@ -47,15 +50,16 @@ class Hole:
 
 class Course:
     def __init__(self, holes):
-        self.current_hole = 1
+        self.current_hole = 0
         self.holes = holes
     def hole(self):
-        return self.holes[self.current_hole - 1]
+        return self.holes[self.current_hole]
     def next_hole(self):
+        print("Completed the hole in", self.hole().stroke_count, "strokes.")
         self.current_hole += 1
-        return self.current_hole <= len(self.holes)
+        return self.current_hole < len(self.holes)
     def draw(self):
-        self.holes[self.current_hole - 1].draw()
+        self.holes[self.current_hole].draw()
 
 tee1 = Tee(Vec2(390, 480))
 trees1 = [Tree(Vec2(450, 110)),
