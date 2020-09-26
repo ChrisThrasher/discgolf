@@ -54,7 +54,7 @@ class Course:
     def hole(self):
         return self.holes[self.current_hole - 1]
     def next_hole(self):
-        self.current_hole = self.current_hole + 1
+        self.current_hole += 1
         return self.current_hole <= len(self.holes)
     def draw(self):
         self.holes[self.current_hole - 1].draw()

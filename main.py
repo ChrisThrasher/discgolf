@@ -41,7 +41,7 @@ while True:
             mouse.up()
             if mouse.relative_throw_vec.norm() > 0.0:
                 disc.throw(mouse.relative_throw_vec)
-                stroke_count = stroke_count + 1
+                stroke_count += 1
 
     # Update disc
     if not disc.hit(COURSE.hole().basket):
