@@ -60,9 +60,12 @@ class Course:
         self.holes[self.current_hole - 1].draw()
 
 tee1 = Tee(Vec2(390, 480))
-trees1 = [Tree(Vec2(450, 300)),
-          Tree(Vec2(400, 350)),
-          Tree(Vec2(350, 300))]
+trees1 = [Tree(Vec2(450, 110)),
+          Tree(Vec2(400, 100)),
+          Tree(Vec2(350, 120)),
+          Tree(Vec2(490, 140)),
+          Tree(Vec2(455, 210)),
+          Tree(Vec2(400, 350))]
 basket1 = Circle(Vec2(440, 160), 10, color.GREY)
 hole1 = Hole(HOLE1, tee1, trees1, basket1)
 
