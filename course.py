@@ -12,8 +12,6 @@ TEE = pygame.image.load(os.path.join("assets", "Tee.png"))
 class Tree(Circle):
     def __init__(self, pos, radius=8):
         super().__init__(pos, radius, color.DARK_GREEN)
-    def draw(self):
-        super().draw()
 
 class Tee:
     def __init__(self, pos):
