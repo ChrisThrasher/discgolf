@@ -55,7 +55,7 @@ class Course:
     def hole(self):
         return self.holes[self.current_hole]
     def next_hole(self):
-        print("Completed the hole in", self.hole().stroke_count, "strokes.")
+        print(f"Completed the hole in {self.hole().stroke_count} strokes.")
         self.current_hole += 1
         return self.current_hole < len(self.holes)
     def draw(self):
