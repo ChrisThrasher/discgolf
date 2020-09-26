@@ -7,6 +7,7 @@ from screen import screen
 from vec2 import Vec2
 
 HOLE1 = pygame.image.load(os.path.join("assets", "Hole1.png"))
+TEE = pygame.image.load(os.path.join("assets", "Tee.png"))
 
 class Tree(Circle):
     def __init__(self, pos):
@@ -22,7 +23,7 @@ class Tee:
     def center(self):
         return self.pos + Vec2(self.width / 2, self.height / 2)
     def draw(self):
-        pygame.draw.rect(screen, color.LIGHT_GREY, [self.pos.x, self.pos.y, self.width, self.height])
+        screen.blit(TEE, self.pos.as_tuple())
 
 class Hole:
     def __init__(self, background, tee, trees, basket):
