@@ -48,7 +48,7 @@ class Hole:
             for y in yy:
                 point = Vec2(x,y)
                 if (disc.pos - point).norm() <= (disc.radius):
-                    rbg_under_disc = screen.get_at((int(x),int(y)))[:3]
+                    rgb_under_disc = screen.get_at((int(x),int(y)))[:3]
                     
     def reset(self, disc):
         disc.pos = self.tee.pos
