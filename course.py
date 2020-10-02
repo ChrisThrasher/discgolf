@@ -1,6 +1,7 @@
 import pygame
 
 import color
+import numpy as np
 
 from circle import Circle
 from screen import screen
@@ -37,6 +38,18 @@ class Hole:
                 direction = tree_to_disc / tree_to_disc.norm()
                 disc.pos = direction * (tree.radius + disc.radius + 5) + tree.pos
                 disc.stop()
+
+    def check_collision_new(self,disc):
+        cp = disc.pos
+        r = disc.radius
+        xx = np.linspace(cp.x - r,cp.x + r,2*r + 1)
+        yy = np.linspace(cp.y - r,cp.y + r,2*r + 1)
+        for x in xx:
+            for y in yy:
+                point = Vec2(x,y)
+                if (disc.pos - point).norm() <= (disc.radius):
+                    rbg_under_disc = screen.get_at((int(x),int(y)))[:3]
+                    
     def reset(self, disc):
         disc.pos = self.tee.pos
     def draw(self):

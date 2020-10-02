@@ -63,7 +63,8 @@ while True:
         break
 
     # Detect obstacle collisions
-    COURSE.hole().check_collision(disc)
+    # COURSE.hole().check_collision(disc)
+    COURSE.hole().check_collision_new(disc)
 
     # Draw objects
     COURSE.draw()
