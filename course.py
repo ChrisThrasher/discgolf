@@ -31,17 +31,9 @@ class Hole:
         self.tee = tee
         self.trees = trees
         self.basket = basket
-    def check_collision(self, disc):
-        for tree in self.trees:
-            if disc.hit(tree):
-                tree_to_disc = disc.pos - tree.pos
-                direction = tree_to_disc / tree_to_disc.norm()
-                disc.pos = direction * (tree.radius + disc.radius + 5) + tree.pos
-                disc.stop()
-
-    def check_collision_new(self,disc):
+    def check_collision(self,disc):
         cp = disc.pos
-        r = disc.radius
+        r  = disc.radius
         xx = np.linspace(cp.x - r,cp.x + r,2*r + 1)
         yy = np.linspace(cp.y - r,cp.y + r,2*r + 1)
         for x in xx:
@@ -49,7 +41,8 @@ class Hole:
                 point = Vec2(x,y)
                 if (disc.pos - point).norm() <= (disc.radius):
                     rgb_under_disc = screen.get_at((int(x),int(y)))[:3]
-                    
+                    if rgb_under_disc == color.DARK_GREEN:
+                        disc.stop()
     def reset(self, disc):
         disc.pos = self.tee.pos
     def draw(self):
