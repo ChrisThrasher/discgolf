@@ -6,9 +6,6 @@ from circle import Circle
 from screen import screen
 from vec2 import Vec2
 
-HOLE1 = pygame.image.load(os.path.join("assets", "Hole1.png"))
-HOLE2 = pygame.image.load(os.path.join("assets", "Hole2.png"))
-HOLE3 = pygame.image.load(os.path.join("assets", "Hole3.png"))
 TEE = pygame.image.load(os.path.join("assets", "Tee.png"))
 
 class Basket(Circle):
@@ -31,7 +28,7 @@ class Tee:
 
 class Hole:
     def __init__(self, background, tee, trees, basket):
-        self.background = background
+        self.background = pygame.image.load(os.path.join("assets", background))
         self.tee = tee
         self.trees = trees
         self.basket = basket
@@ -75,7 +72,7 @@ trees1 = [Tree(Vec2(450, 110)),
           Tree(Vec2(455, 210)),
           Tree(Vec2(400, 350))]
 basket1 = Basket(Vec2(440, 160))
-hole1 = Hole(HOLE1, tee1, trees1, basket1)
+hole1 = Hole("Hole1.png", tee1, trees1, basket1)
 
 tee2 = Tee(Vec2(390, 480))
 trees2 = [Tree(Vec2(265, 200)),
@@ -83,7 +80,7 @@ trees2 = [Tree(Vec2(265, 200)),
           Tree(Vec2(310, 265)),
           Tree(Vec2(310, 335))]
 basket2 = Basket(Vec2(225, 120))
-hole2 = Hole(HOLE2, tee2, trees2, basket2)
+hole2 = Hole("Hole2.png", tee2, trees2, basket2)
 
 tee3 = Tee(Vec2(280, 480))
 trees3 = [Tree(Vec2(450, 190)),
@@ -93,6 +90,6 @@ trees3 = [Tree(Vec2(450, 190)),
           Tree(Vec2(350, 470)),
           Tree(Vec2(350, 385))]
 basket3 = Basket(Vec2(530, 140))
-hole3 = Hole(HOLE3, tee3, trees3, basket3)
+hole3 = Hole("Hole3.png", tee3, trees3, basket3)
 
 COURSE = Course([hole1, hole2, hole3])
