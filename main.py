@@ -14,6 +14,7 @@ from course import COURSE
 
 pygame.init()
 
+# Mutable global state
 clock = pygame.time.Clock()
 mouse = Mouse()
 disc = Disc(COURSE.hole().tee.center(), 5, BAG.selected)
