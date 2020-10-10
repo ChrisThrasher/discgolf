@@ -6,8 +6,6 @@ from circle import Circle
 from screen import screen
 from vec2 import Vec2
 
-TEE = pygame.image.load(os.path.join("assets", "Tee.png"))
-
 class Basket(Circle):
     def __init__(self, pos):
         super().__init__(pos, 10, color.GREY)
@@ -21,10 +19,11 @@ class Tee:
         self.pos = pos
         self.width = 20
         self.height = 50
+        self.image = pygame.image.load(os.path.join("assets", "Tee.png"))
     def center(self):
         return self.pos + Vec2(self.width / 2, self.height / 2)
     def draw(self):
-        screen.blit(TEE, self.pos.as_tuple())
+        screen.blit(self.image, self.pos.as_tuple())
 
 class Hole:
     def __init__(self, background, tee, trees, basket):
