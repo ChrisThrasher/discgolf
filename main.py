@@ -7,18 +7,15 @@ import color
 
 from screen import screen, FRAME_RATE, SCREEN_WIDTH, SCREEN_HEIGHT
 from disc import Disc
-from wind import Wind
 from bag import BAG
 from vec2 import Vec2
 from mouse import Mouse
 from course import COURSE
 
 pygame.init()
+
 clock = pygame.time.Clock()
-
 mouse = Mouse()
-
-wind = Wind(Vec2(100, 100), 50, max_speed=50)
 disc = Disc(COURSE.hole().tee.center(), 5, BAG.selected)
 
 while True:
@@ -42,7 +39,7 @@ while True:
 
     # Update disc
     if not disc.hit(COURSE.hole().basket):
-        disc.update_velocity(wind)
+        disc.update_velocity(COURSE.wind)
         if disc.speed() < 15:
             disc.stop()
         disc.update_position()
@@ -62,7 +59,6 @@ while True:
 
     # Draw objects
     COURSE.draw()
-    wind.draw()
     BAG.draw(mouse)
     disc.draw()
     mouse.draw()

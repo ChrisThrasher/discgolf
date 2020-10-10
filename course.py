@@ -1,5 +1,6 @@
 import pygame
 import os
+import numpy as np
 import color
 
 from circle import Circle
@@ -50,10 +51,30 @@ class Hole:
             tree.draw()
         self.basket.draw()
 
+class Wind(Circle):
+    def __init__(self, pos, radius, max_speed):
+        super().__init__(pos, radius, color.LIGHT_GREY)
+        self.speed = np.random.rand() * max_speed
+        self.heading = np.deg2rad(np.random.randint(360))
+        self.vel = Vec2(np.cos(self.heading), np.sin(self.heading)) * self.speed
+    def draw(self):
+        super().draw()
+        start_pos = self.pos
+        end_pos = self.pos + Vec2(np.cos(self.heading), np.sin(self.heading)) * self.radius
+        pygame.draw.line(screen, color.WHITE, start_pos.as_tuple(), end_pos.as_tuple(), width=5)
+        text = ('Wind Speed: ' + str(round(self.speed, 1)))
+        text_surf = pygame.font.SysFont(None, 24).render(text, True, color.WHITE)
+        text_rect = text_surf.get_rect()
+        text_rect.center = (int(self.pos.x), int(self.pos.y - self.radius - 15))
+        screen.blit(text_surf, text_rect)
+    speed: float = 0.0
+    heading: float = 0.0
+
 class Course:
     def __init__(self, holes):
         self.current_hole = 0
         self.holes = holes
+        self.wind = Wind(Vec2(100, 100), 50, max_speed=50)
     def hole(self):
         return self.holes[self.current_hole]
     def next_hole(self):
@@ -62,6 +83,7 @@ class Course:
         return self.current_hole < len(self.holes)
     def draw(self):
         self.holes[self.current_hole].draw()
+        self.wind.draw()
 
 HOLE1 = Hole("Hole1.png", Tee(Vec2(390, 480)), Basket(Vec2(440, 160)), [Tree(Vec2(450, 110)),
                                                                         Tree(Vec2(400, 100)),
