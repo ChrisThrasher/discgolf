@@ -23,6 +23,7 @@ while True:
     # Track mouse position at all times
     mouse.pos = Vec2.from_tuple(pygame.mouse.get_pos())
 
+    # Process pygame events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
