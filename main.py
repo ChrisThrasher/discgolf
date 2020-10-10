@@ -16,8 +16,6 @@ from course import COURSE
 pygame.init()
 clock = pygame.time.Clock()
 
-sys_font = pygame.font.SysFont(None, 24)
-
 mouse = Mouse()
 
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
