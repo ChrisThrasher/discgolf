@@ -26,7 +26,7 @@ class Tee:
         screen.blit(self.image, self.pos.as_tuple())
 
 class Hole:
-    def __init__(self, background, tee, trees, basket):
+    def __init__(self, background, tee, basket, trees):
         self.background = pygame.image.load(os.path.join("assets", background))
         self.tee = tee
         self.trees = trees
@@ -71,7 +71,7 @@ trees1 = [Tree(Vec2(450, 110)),
           Tree(Vec2(455, 210)),
           Tree(Vec2(400, 350))]
 basket1 = Basket(Vec2(440, 160))
-hole1 = Hole("Hole1.png", tee1, trees1, basket1)
+hole1 = Hole("Hole1.png", tee1, basket1, trees1)
 
 tee2 = Tee(Vec2(390, 480))
 trees2 = [Tree(Vec2(265, 200)),
@@ -79,7 +79,7 @@ trees2 = [Tree(Vec2(265, 200)),
           Tree(Vec2(310, 265)),
           Tree(Vec2(310, 335))]
 basket2 = Basket(Vec2(225, 120))
-hole2 = Hole("Hole2.png", tee2, trees2, basket2)
+hole2 = Hole("Hole2.png", tee2, basket2, trees2)
 
 tee3 = Tee(Vec2(280, 480))
 trees3 = [Tree(Vec2(450, 190)),
@@ -89,6 +89,6 @@ trees3 = [Tree(Vec2(450, 190)),
           Tree(Vec2(350, 470)),
           Tree(Vec2(350, 385))]
 basket3 = Basket(Vec2(530, 140))
-hole3 = Hole("Hole3.png", tee3, trees3, basket3)
+hole3 = Hole("Hole3.png", tee3, basket3, trees3)
 
 COURSE = Course([hole1, hole2, hole3])
