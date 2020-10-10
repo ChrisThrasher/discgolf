@@ -7,6 +7,7 @@ from screen import screen
 from vec2 import Vec2
 
 HOLE1 = pygame.image.load(os.path.join("assets", "Hole1.png"))
+HOLE2 = pygame.image.load(os.path.join("assets", "Hole2.png"))
 TEE = pygame.image.load(os.path.join("assets", "Tee.png"))
 
 class Basket(Circle):
@@ -76,13 +77,12 @@ basket1 = Basket(Vec2(440, 160))
 hole1 = Hole(HOLE1, tee1, trees1, basket1)
 
 tee2 = Tee(Vec2(390, 480))
-trees2 = [Tree(Vec2(440, 200)),
-          Tree(Vec2(420, 250)),
-          Tree(Vec2(400, 300)),
-          Tree(Vec2(380, 350)),
-          Tree(Vec2(360, 400))]
-basket2 = Basket(Vec2(440, 160))
-hole2 = Hole(HOLE1, tee2, trees2, basket2)
+trees2 = [Tree(Vec2(265, 200)),
+          Tree(Vec2(255, 240)),
+          Tree(Vec2(310, 265)),
+          Tree(Vec2(310, 335))]
+basket2 = Basket(Vec2(225, 120))
+hole2 = Hole(HOLE2, tee2, trees2, basket2)
 
 tee3 = Tee(Vec2(390, 480))
 trees3 = [Tree(Vec2(440, 200)),
