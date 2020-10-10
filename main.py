@@ -18,7 +18,6 @@ clock = pygame.time.Clock()
 
 sys_font = pygame.font.SysFont(None, 24)
 
-stroke_count = 0
 mouse = Mouse()
 
 wind = Wind(Vec2(100, 100), 50, max_speed=50)
@@ -53,7 +52,6 @@ while True:
         if COURSE.next_hole():
             disc.pos = COURSE.hole().tee.center()
             disc.stop()
-            stroke_count = 0
         else:
             break
 
