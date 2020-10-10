@@ -63,26 +63,23 @@ class Course:
     def draw(self):
         self.holes[self.current_hole].draw()
 
-trees1 = [Tree(Vec2(450, 110)),
-          Tree(Vec2(400, 100)),
-          Tree(Vec2(350, 120)),
-          Tree(Vec2(490, 140)),
-          Tree(Vec2(455, 210)),
-          Tree(Vec2(400, 350))]
-hole1 = Hole("Hole1.png", Tee(Vec2(390, 480)), Basket(Vec2(440, 160)), trees1)
+hole1 = Hole("Hole1.png", Tee(Vec2(390, 480)), Basket(Vec2(440, 160)), [Tree(Vec2(450, 110)),
+                                                                        Tree(Vec2(400, 100)),
+                                                                        Tree(Vec2(350, 120)),
+                                                                        Tree(Vec2(490, 140)),
+                                                                        Tree(Vec2(455, 210)),
+                                                                        Tree(Vec2(400, 350))])
 
-trees2 = [Tree(Vec2(265, 200)),
-          Tree(Vec2(255, 240)),
-          Tree(Vec2(310, 265)),
-          Tree(Vec2(310, 335))]
-hole2 = Hole("Hole2.png", Tee(Vec2(390, 480)), Basket(Vec2(225, 120)), trees2)
+hole2 = Hole("Hole2.png", Tee(Vec2(390, 480)), Basket(Vec2(225, 120)), [Tree(Vec2(265, 200)),
+                                                                        Tree(Vec2(255, 240)),
+                                                                        Tree(Vec2(310, 265)),
+                                                                        Tree(Vec2(310, 335))])
 
-trees3 = [Tree(Vec2(450, 190)),
-          Tree(Vec2(385, 300)),
-          Tree(Vec2(390, 230)),
-          Tree(Vec2(355, 425)),
-          Tree(Vec2(350, 470)),
-          Tree(Vec2(350, 385))]
-hole3 = Hole("Hole3.png", Tee(Vec2(280, 480)), Basket(Vec2(530, 140)), trees3)
+hole3 = Hole("Hole3.png", Tee(Vec2(280, 480)), Basket(Vec2(530, 140)), [Tree(Vec2(450, 190)),
+                                                                        Tree(Vec2(385, 300)),
+                                                                        Tree(Vec2(390, 230)),
+                                                                        Tree(Vec2(355, 425)),
+                                                                        Tree(Vec2(350, 470)),
+                                                                        Tree(Vec2(350, 385))])
 
 COURSE = Course([hole1, hole2, hole3])
