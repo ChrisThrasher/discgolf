@@ -44,7 +44,7 @@ $ ./main.py
 
 - [x] Use PNGs for visual assets
 
-- [ ] Tweak 3-hole design to make each hole more unique
+- [x] Tweak 3-hole design to make each hole more unique
 
 ## v0.5
 
