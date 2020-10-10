@@ -39,23 +39,22 @@ while True:
                 COURSE.hole().throw()
 
     # Update disc
-    if not disc.hit(COURSE.hole().basket):
-        disc.update_velocity(COURSE.wind)
-        if disc.speed() < 15:
-            disc.stop()
-        disc.update_position()
-    else:
-        if COURSE.next_hole():
-            disc.pos = COURSE.hole().tee.center()
-            disc.stop()
-        else:
-            break
-
     if disc.off_screen():
         print("Disc exited the play area.")
         break
 
-    # Detect obstacle collisions
+    if disc.hit(COURSE.hole().basket):
+        if COURSE.next_hole():
+            disc.pos = COURSE.hole().tee.center()
+            disc.stop()
+            continue
+        else:
+            break
+
+    disc.update_velocity(COURSE.wind)
+    if disc.speed() < 15:
+        disc.stop()
+    disc.update_position()
     COURSE.hole().check_collision(disc)
 
     # Draw objects
