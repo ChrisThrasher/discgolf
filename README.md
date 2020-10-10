@@ -3,7 +3,7 @@
 To install PyGame in macOS 10.15:
 
 ```
-$ python3 -m pip install pygame==2.0.0.dev6
+$ python3 -m pip install pygame==2.0.0.dev10
 ```
 
 To run the game:
@@ -42,11 +42,17 @@ $ ./main.py
 
 ## v0.4
 
+- [ ] Use PNGs for visual assets
+
+- [ ] Tweak 3-hole design to make each hole more unique
+
+## v0.5
+
 - [ ] Curved disc paths
 
 - [ ] Disc deflection off of on-field obstacles
 
-## v0.5
+## v0.6
 
 - [ ] 9-hole course
 

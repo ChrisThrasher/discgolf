@@ -41,7 +41,7 @@ while True:
             mouse.up()
             if mouse.relative_throw_vec.norm() > 0.0:
                 disc.throw(mouse.relative_throw_vec)
-                stroke_count = stroke_count + 1
+                COURSE.hole().throw()
 
     # Update disc
     if not disc.hit(COURSE.hole().basket):
@@ -50,7 +50,6 @@ while True:
             disc.stop()
         disc.update_position()
     else:
-        print("Completed the hole in", stroke_count, "strokes.")
         if COURSE.next_hole():
             disc.pos = COURSE.hole().tee.center()
             disc.stop()
