@@ -7,27 +7,23 @@ import color
 
 from screen import screen, FRAME_RATE, SCREEN_WIDTH, SCREEN_HEIGHT
 from disc import Disc
-from wind import Wind
 from bag import BAG
 from vec2 import Vec2
 from mouse import Mouse
 from course import COURSE
 
 pygame.init()
+
+# Mutable global state
 clock = pygame.time.Clock()
-
-sys_font = pygame.font.SysFont(None, 24)
-
-stroke_count = 0
 mouse = Mouse()
-
-wind = Wind(Vec2(100, 100), 50, max_speed=50)
 disc = Disc(COURSE.hole().tee.center(), 5, BAG.selected)
 
 while True:
     # Track mouse position at all times
     mouse.pos = Vec2.from_tuple(pygame.mouse.get_pos())
 
+    # Process pygame events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -44,29 +40,26 @@ while True:
                 COURSE.hole().throw()
 
     # Update disc
-    if not disc.hit(COURSE.hole().basket):
-        disc.update_velocity(wind)
-        if disc.speed() < 15:
-            disc.stop()
-        disc.update_position()
-    else:
-        if COURSE.next_hole():
-            disc.pos = COURSE.hole().tee.center()
-            disc.stop()
-            stroke_count = 0
-        else:
-            break
-
     if disc.off_screen():
         print("Disc exited the play area.")
         break
 
-    # Detect obstacle collisions
+    if disc.hit(COURSE.hole().basket):
+        if COURSE.next_hole():
+            disc.pos = COURSE.hole().tee.center()
+            disc.stop()
+            continue
+        else:
+            break
+
+    disc.update_velocity(COURSE.wind)
+    if disc.speed() < 15:
+        disc.stop()
+    disc.update_position()
     COURSE.hole().check_collision(disc)
 
     # Draw objects
     COURSE.draw()
-    wind.draw()
     BAG.draw(mouse)
     disc.draw()
     mouse.draw()
