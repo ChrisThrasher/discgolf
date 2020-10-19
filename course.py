@@ -81,9 +81,16 @@ class Course:
         print(f"Completed hole {self.current_hole + 1} in {self.hole().stroke_count} strokes.")
         self.current_hole += 1
         return self.current_hole < len(self.holes)
+    def draw_hole_number(self):
+        text = f"Hole {self.current_hole + 1}"
+        text_surf = pygame.font.SysFont(None, 24).render(text, True, color.WHITE)
+        text_rect = text_surf.get_rect()
+        text_rect.center = (400, 20)
+        screen.blit(text_surf, text_rect)
     def draw(self):
         self.holes[self.current_hole].draw()
         self.wind.draw()
+        self.draw_hole_number()
 
 HOLE1 = Hole("Hole1.png", Tee(Vec2(390, 480)), Basket(Vec2(440, 160)), [Tree(Vec2(450, 110)),
                                                                         Tree(Vec2(400, 100)),
