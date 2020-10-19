@@ -81,9 +81,16 @@ class Course:
         print(f"Completed hole {self.current_hole + 1} in {self.hole().stroke_count} strokes.")
         self.current_hole += 1
         return self.current_hole < len(self.holes)
+    def draw_hole_number(self):
+        text = f"Hole {self.current_hole + 1}"
+        text_surf = pygame.font.SysFont(None, 24).render(text, True, color.WHITE)
+        text_rect = text_surf.get_rect()
+        text_rect.center = (400, 20)
+        screen.blit(text_surf, text_rect)
     def draw(self):
         self.holes[self.current_hole].draw()
         self.wind.draw()
+        self.draw_hole_number()
 
 HOLE1 = Hole("Hole1.png", Tee(Vec2(390, 480)), Basket(Vec2(440, 160)), [Tree(Vec2(450, 110)),
                                                                         Tree(Vec2(400, 100)),
@@ -104,4 +111,11 @@ HOLE3 = Hole("Hole3.png", Tee(Vec2(280, 480)), Basket(Vec2(530, 140)), [Tree(Vec
                                                                         Tree(Vec2(350, 470)),
                                                                         Tree(Vec2(350, 385))])
 
-COURSE = Course([HOLE1, HOLE2, HOLE3])
+HOLE4 = Hole("Hole4.png", Tee(Vec2(360, 480)), Basket(Vec2(430, 160)), [])
+HOLE5 = Hole("Hole5.png", Tee(Vec2(180, 430)), Basket(Vec2(640, 140)), [])
+HOLE6 = Hole("Hole6.png", Tee(Vec2(390, 505)), Basket(Vec2(455, 120)), [])
+HOLE7 = Hole("Hole7.png", Tee(Vec2(360, 490)), Basket(Vec2(470,  90)), [])
+HOLE8 = Hole("Hole8.png", Tee(Vec2(220, 440)), Basket(Vec2(460, 130)), [])
+HOLE9 = Hole("Hole9.png", Tee(Vec2(390, 500)), Basket(Vec2(430, 110)), [])
+
+COURSE = Course([HOLE1, HOLE2, HOLE3, HOLE4, HOLE5, HOLE6, HOLE7, HOLE8, HOLE9])

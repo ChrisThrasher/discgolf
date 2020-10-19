@@ -48,13 +48,13 @@ $ ./main.py
 
 ## v0.5
 
-- [ ] Curved disc paths
-
-- [ ] Disc deflection off of on-field obstacles
+- [ ] 9-hole course
 
 ## v0.6
 
-- [ ] 9-hole course
+- [ ] Curved disc paths
+
+- [ ] Disc deflection off of on-field obstacles
 
 ## v1.0
 
