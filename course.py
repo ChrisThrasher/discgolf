@@ -113,7 +113,7 @@ HOLE3 = Hole("Hole3.png", Tee(Vec2(280, 480)), Basket(Vec2(530, 140)), [Tree(Vec
 
 HOLE4 = Hole("Hole4.png", Tee(Vec2(360, 480)), Basket(Vec2(430, 160)), [])
 HOLE5 = Hole("Hole5.png", Tee(Vec2(180, 430)), Basket(Vec2(640, 140)), [])
-HOLE6 = Hole("Hole6.png", Tee(Vec2(280, 480)), Basket(Vec2(530, 140)), [])
+HOLE6 = Hole("Hole6.png", Tee(Vec2(390, 505)), Basket(Vec2(455, 120)), [])
 HOLE7 = Hole("Hole7.png", Tee(Vec2(280, 480)), Basket(Vec2(530, 140)), [])
 HOLE8 = Hole("Hole8.png", Tee(Vec2(280, 480)), Basket(Vec2(530, 140)), [])
 HOLE9 = Hole("Hole9.png", Tee(Vec2(280, 480)), Basket(Vec2(530, 140)), [])
