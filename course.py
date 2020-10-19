@@ -116,6 +116,6 @@ HOLE5 = Hole("Hole5.png", Tee(Vec2(180, 430)), Basket(Vec2(640, 140)), [])
 HOLE6 = Hole("Hole6.png", Tee(Vec2(390, 505)), Basket(Vec2(455, 120)), [])
 HOLE7 = Hole("Hole7.png", Tee(Vec2(360, 490)), Basket(Vec2(470,  90)), [])
 HOLE8 = Hole("Hole8.png", Tee(Vec2(220, 440)), Basket(Vec2(460, 130)), [])
-HOLE9 = Hole("Hole9.png", Tee(Vec2(280, 480)), Basket(Vec2(530, 140)), [])
+HOLE9 = Hole("Hole9.png", Tee(Vec2(390, 500)), Basket(Vec2(430, 110)), [])
 
 COURSE = Course([HOLE1, HOLE2, HOLE3, HOLE4, HOLE5, HOLE6, HOLE7, HOLE8, HOLE9])
